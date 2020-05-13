@@ -4,6 +4,8 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Data = require('./data');
+const dotenv = require('dotenv').config()
+const dbRoute = process.env.DBROUTE
 
 const API_PORT = 3001;
 const app = express();
@@ -11,8 +13,8 @@ app.use(cors());
 const router = express.Router();
 
 // this is our MongoDB database
-const dbRoute =
-    'mongodb://<your-db-username-here>:<your-db-password-here>@ds249583.mlab.com:49583/fullstack_app';
+// const dbRoute =
+//     'mongodb://<your-db-username-here>:<your-db-password-here>@ds249583.mlab.com:49583/fullstack_app';
 
 // connects our back end code with the database
 mongoose.connect(dbRoute, { useNewUrlParser: true });
