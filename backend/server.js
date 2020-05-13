@@ -4,17 +4,13 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Data = require('./data');
-const dotenv = require('dotenv').config()
-const dbRoute = process.env.DBROUTE
+require('dotenv').config()
+const dbRoute = process.env.DB_ROUTE
 
 const API_PORT = 3001;
 const app = express();
 app.use(cors());
 const router = express.Router();
-
-// this is our MongoDB database
-// const dbRoute =
-//     'mongodb://<your-db-username-here>:<your-db-password-here>@ds249583.mlab.com:49583/fullstack_app';
 
 // connects our back end code with the database
 mongoose.connect(dbRoute, { useNewUrlParser: true });
@@ -26,6 +22,12 @@ db.once('open', () => console.log('connected to the database'));
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+// (optional) only made for logging and
+// bodyParser, parses the request body to be a readable json format
+app.use(bodyParser.urlencoded({ extended: false }));
+// allows for ui to talk to db
+app.use(bodyParser.json());
+app.use(logger('dev'));
 
 // this is our get method
 // this method fetches all available data in our database
