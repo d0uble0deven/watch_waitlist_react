@@ -11,11 +11,10 @@ const ViewPage = () => {
 
     return (
         <div>
-            VIEW PAGE
             <p>Select a watch:</p>
             <button>Select All Watches</button>
 
-            {/* <WatchCard /> */}
+            <WatchCard />
 
 
             <div className="TicketView">

@@ -5,7 +5,6 @@ const AddPage = () => {
 
     return (
         <div>
-            ADD PAGE
             <TicketForm />
         </div>
     )
