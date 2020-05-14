@@ -3,7 +3,7 @@ const express = require('express');
 var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
-const Data = require('./data');
+const Data = require('./Data/data');
 require('dotenv').config()
 const dbRoute = process.env.DB_ROUTE
 
@@ -13,7 +13,7 @@ app.use(cors());
 const router = express.Router();
 
 // connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true });
+mongoose.connect(dbRoute, { useNewUrlParser: true, findandmodify: true });
 
 let db = mongoose.connection;
 

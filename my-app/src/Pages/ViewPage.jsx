@@ -4,14 +4,15 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, Ca
 import classnames from 'classnames';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import Test from '../Components/Test'
 
 const ViewPage = () => {
     const [selected, setSelected] = useState(false)
-    const [activeTab, setActiveTab] = useState('1');
+    // const [activeTab, setActiveTab] = useState('1');
 
-    const toggle = tab => {
-        if (activeTab !== tab) setActiveTab(tab);
-    }
+    // const toggle = tab => {
+    //     if (activeTab !== tab) setActiveTab(tab);
+    // }
 
     return (
         <div>
@@ -30,7 +31,7 @@ const ViewPage = () => {
                     <TabList>
                         <Tab>All</Tab>
                         <Tab>Pending</Tab>
-                        <Tab>Fullfilled</Tab>
+                        <Tab>Fulfilled</Tab>
                     </TabList>
 
                     <TabPanel>
@@ -40,7 +41,8 @@ const ViewPage = () => {
                         <h2>Pending Tickets</h2>
                     </TabPanel>
                     <TabPanel>
-                        <h2>Fullfilled Tickets</h2>
+                        <h2>Fulfilled Tickets</h2>
+                        <Test />
                     </TabPanel>
                 </Tabs>
 
