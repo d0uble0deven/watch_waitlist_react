@@ -51,19 +51,19 @@ export default function NameForm(props) {
                 Last Name: <input type="text" placeholder="Doe" {...bindLastName} />
             </label>
             <label>
-                Email: <input type="text" placeholder="me@email.com" {...bindEmail} />
+                Email: <input type="email" placeholder="me@email.com" {...bindEmail} />
             </label>
             <label>
-                Phone Number: <input type="text" placeholder="000-000-0000" {...bindNumber} />
+                Phone Number: <input type="tel" placeholder="000-000-0000" {...bindNumber} />
             </label>
             <label>Address:<input type="text" placeholder="2211 Lawnmont Ave"></input></label>
             <label>City:<input type="text" placeholder="2211 Lawnmont Ave"></input></label>
             <label>State:<input type="text" placeholder="Texas"></input></label>
             <label>Zip Code:<input type="text" placeholder="75034"></input></label>
             <label>Date Ordered:<input type="date" placeholder="09/21/1994"></input></label>
-            <label>Watch Ordered:<input type="enum" ></input></label>
+            <label>Watch Ordered:<input type="range" ></input></label>
             <label>Date Picked Up:<input type="date" placeholder="09/21/1994"></input></label>
-            <label>Fullfiled?:<input type="radio" placeholder="No"></input></label>
+            <label>Fullfiled?:<input type="checkbox" placeholder="No"></input></label>
 
             <input type="submit" value="Submit" />
         </form>
