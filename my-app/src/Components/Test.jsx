@@ -50,6 +50,7 @@ class Test extends Component {
     // our put method that uses our backend api
     // to create new query into our data base
     putDataToDB = (message) => {
+        // logic for setting up and id
         let currentIds = this.state.data.map((data) => data.id);
         let idToBeAdded = 0;
         while (currentIds.includes(idToBeAdded)) {

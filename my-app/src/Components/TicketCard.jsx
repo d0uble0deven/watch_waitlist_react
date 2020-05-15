@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 const TicketCard = () => {
-    const [fulfilled, setFulfilled] = useState(false)
 
     // get info from db and then map out cards here
     // map out sample cards then connect to db to get real info
@@ -15,15 +14,19 @@ const TicketCard = () => {
     const listCustomer = customer.map((item, index) =>
 
         // console.log(item.contact_info.email)
-        < Card inverse key={index} >
+        <Card inverse key={index} >
             <CardTitle>{item.customer_name.first_name} {item.customer_name.last_name}</CardTitle>
             <CardBody>
                 <li>{item.order.date_ordered}</li>
                 <li>{item.order.watch_ordered}</li>
                 <li>{JSON.stringify(item.order.date_fulfilled)}</li>
                 <li>{JSON.stringify(item.order.fulfilled)}</li>
+                {/* when button is clicked it updates db with fulfillment status, 
+                updates state to remove ticket */}
+                <Button color="success">Yes</Button>
+                <Button color="secondary">No</Button>
             </CardBody>
-        </Card >
+        </Card>
     )
 
     return (

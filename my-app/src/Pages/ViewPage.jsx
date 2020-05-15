@@ -12,7 +12,6 @@ const ViewPage = () => {
     return (
         <div>
             <p>Select a watch:</p>
-            <button>Select All Watches</button>
 
             <WatchCard />
 
