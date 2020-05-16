@@ -12,21 +12,23 @@ const WatchCard = () => {
         { name: 'Cosmograph Daytona', image: daytona }, { name: 'Sky Dweller', image: skydweller }, { name: 'Datejust', image: datejust }, { name: 'Milgauss', image: milgauss }];
 
     const listWatches = watches.map((item, index) =>
-        < Card inverse key={index + 1} >
-            <CardImgOverlay>
-                <CardTitle>{item.name}{index + 1}</CardTitle>
-                <CardImg width="10%" src={item.image} alt={item.name} />
-            </CardImgOverlay>
-            <Button color="primary" onClick={() => onCheckboxBtnClick(index + 1)} active={selected.includes(index + 1)}>View Reports</Button>
-        </Card >
+        <Button onClick={() => onCheckboxBtnClick(index + 1)} active={selected.includes(index + 1)}>
+            <Card inverse key={index + 1} >
+                <CardImgOverlay>
+                    <CardTitle>{item.name}{index + 1}</CardTitle>
+                    <CardImg width="10%" src={item.image} alt={item.name} />
+                </CardImgOverlay>
+            </Card>
+        </Button>
 
     )
 
 
     const selectAll = () => {
         let num = 0
+        let empty = []
         if (selected.length == watches.length) {
-            setSelected([])
+            setSelected(empty)
             console.log('selected is cleared: ' + selected)
             console.log(selected)
         }

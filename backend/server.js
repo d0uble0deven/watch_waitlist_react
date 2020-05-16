@@ -7,6 +7,7 @@ const Data = require('./Data/data');
 require('dotenv').config()
 const dbRoute = process.env.DB_ROUTE
 const testRoutes = require('./routes/test')
+const testCtrl = require('./controllers/test')
 const path = require('path')
 var cookieParser = require('cookie-parser')
 var methodOverride = require('method-override')
