@@ -19,7 +19,7 @@ app.use(cors());
 // const router = express.Router();
 
 // connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true, findandmodify: true, useUnifiedTopology: true });
+mongoose.connect(dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
 
 let db = mongoose.connection;
 

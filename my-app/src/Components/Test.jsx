@@ -102,14 +102,14 @@ class Test extends Component {
     // it is easy to understand their functions when you
     // see them render into our screen
     render() {
-        const { data } = this.state;
+        // const { data } = this.state;
         return (
             <div>
                 <ul>
-                    {data.length <= 0
+                    {this.state.data.length <= 0
                         ? 'NO DB ENTRIES YET'
-                        : data.map((dat) => (
-                            <li style={{ padding: '10px' }} key={data.message}>
+                        : this.state.data.map((dat) => (
+                            <li style={{ padding: '10px' }} key={this.state.data.message}>
                                 <span style={{ color: 'gray' }}> id: </span> {dat.id} <br />
                                 <span style={{ color: 'gray' }}> data: </span>
                                 {dat.message}

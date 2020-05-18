@@ -12,7 +12,7 @@ const WatchCard = () => {
         { name: 'Cosmograph Daytona', image: daytona }, { name: 'Sky Dweller', image: skydweller }, { name: 'Datejust', image: datejust }, { name: 'Milgauss', image: milgauss }];
 
     const listWatches = watches.map((item, index) =>
-        <Button onClick={() => onCheckboxBtnClick(index + 1)} active={selected.includes(index + 1)}>
+        <Button key={index + 1} onClick={() => onCheckboxBtnClick(index + 1)} active={selected.includes(index + 1)}>
             <Card inverse key={index + 1} >
                 <CardImgOverlay>
                     <CardTitle>{item.name}{index + 1}</CardTitle>

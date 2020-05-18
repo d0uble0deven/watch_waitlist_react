@@ -9,9 +9,9 @@ module.exports = {
 }
 
 
-// make all function async
+// can't use arrow functions
 
-var index = (req, res) => {
+function index(req, res) {
     Data.find((err, data) => {
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true, data: data });
@@ -20,7 +20,7 @@ var index = (req, res) => {
 
 
 
-var create = (req, res) => {
+function create(req, res) {
     // mongoose method
     let data = new Data();
 
@@ -45,7 +45,7 @@ var create = (req, res) => {
 }
 
 
-var deleteOne = (req, res) => {
+function deleteOne(req, res) {
     const { id } = req.body;
     Data.findByIdAndRemove(id, (err) => {
         if (err) return res.send(err);
@@ -54,7 +54,7 @@ var deleteOne = (req, res) => {
 }
 
 
-var update = (req, res) => {
+function update(req, res) {
     const { id, update } = req.body;
     Data.findByIdAndUpdate(id, update, (err) => {
         if (err) return res.json({ success: false, error: err });
