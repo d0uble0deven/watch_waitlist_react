@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import WatchCard from '../Components/WatchCard'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
-import Test from '../Components/Test'
 import TicketCard from '../Components/TicketCard';
 import TestHooks from '../Components/TestHooks';
 
@@ -36,7 +35,6 @@ const ViewPage = () => {
                     </TabPanel>
                     <TabPanel>
                         <h2>Fulfilled Tickets</h2>
-                        {/* <Test /> */}
                     </TabPanel>
                 </Tabs>
 

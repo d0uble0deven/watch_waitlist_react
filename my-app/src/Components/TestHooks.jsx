@@ -50,22 +50,21 @@ const TestHooks = () => {
         })
     }
 
+
     const deleteFromDb = (idToDelete) => {
         parseInt(idToDelete)
         let objIdToDelete = null
         data.forEach(item => {
             if (item.id == idToDelete) {
-                objIdToDelete = item.id
+                objIdToDelete = item._id
             }
         })
-        // issue is with this axios call
-        axios.delete('http://localhost:3001/api/deleteData',
-            { data: { id: objIdToDelete } })
-            .then(response => response.data)
-            .catch((error) => {
-                throw error.response.data
-            })
+
+        axios.delete('http://localhost:3001/api/deleteData', {
+            data: { id: objIdToDelete }
+        })
     }
+
 
     const updateDb = (idToUpdate, updateToApply) => {
         let objIdToUpdate = null
