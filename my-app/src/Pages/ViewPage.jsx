@@ -13,7 +13,7 @@ const ViewPage = () => {
         <div>
             <p>Select a watch:</p>
 
-            <WatchCard />
+            {/* <WatchCard /> */}
 
 
             <div className="TicketView">
@@ -27,11 +27,11 @@ const ViewPage = () => {
 
                     <TabPanel>
                         <h2>All Tickets</h2>
-                        <TestHooks />
+                        <TicketCard />
                     </TabPanel>
                     <TabPanel>
                         <h2>Pending Tickets</h2>
-                        <TicketCard />
+                        {/* <TestHooks /> */}
                     </TabPanel>
                     <TabPanel>
                         <h2>Fulfilled Tickets</h2>

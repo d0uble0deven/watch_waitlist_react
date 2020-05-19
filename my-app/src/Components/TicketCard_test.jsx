@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
-
 const TicketCard = () => {
-    const [customer, setCustomer] = useState([])
 
-    // get tickets from DB
-    useEffect(() => {
-        getTicketsFromDb()
-    })
+    // get info from db and then map out cards here
+    // map out sample cards then connect to db to get real info
 
-    const getTicketsFromDb = () => {
-        // 404 means that is not pulling data from backend api
-        fetch('http://localhost:3001/api/getTickets')
-            // Response {type: "cors", url: "http://localhost:3001/api/getTickets", redirected: false, status: 404, ok: false, …}
-            .then(data => data.json())
-            .then(res => setCustomer(res.data))
-        console.log(customer)
-    }
+    const customer = [{ customer_name: { first_name: 'John', last_name: 'Doe' }, address: { street: '2211 Lawnmont Avenue', city: 'Austin', state: 'Texas', zip_code: '78756' }, contact_info: { phone_number: '8172668041', email: 'dev.govindji.software@gmail.com' }, order: { date_ordered: 'May 5, 2020', watch_ordered: 'daytona', date_fulfilled: null, fulfilled: false } },
+    { customer_name: { first_name: 'Dave', last_name: 'Danson' }, address: { street: '4433 Train Boulevard', city: 'Waco', state: 'Texas', zip_code: '76799' }, contact_info: { phone_number: '2146629087', email: 'dave@gmail.com' }, order: { date_ordered: 'May 7, 2020', watch_ordered: 'skydweller', date_fulfilled: 'May 13, 2020', fulfilled: true } }]
+    // date_fulfilled caen either be date or null
+    // fulfilled can either be true or false
+
 
     const listCustomer = customer.map((item, index) =>
 

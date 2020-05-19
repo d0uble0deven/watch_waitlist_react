@@ -7,10 +7,12 @@ const Data = require('./Data/data');
 require('dotenv').config()
 const dbRoute = process.env.DB_ROUTE
 const testRoutes = require('./routes/test')
+const ticketRoutes = require('./routes/ticketRoute')
 const testCtrl = require('./controllers/test')
 const path = require('path')
 var cookieParser = require('cookie-parser')
 var methodOverride = require('method-override')
+var createError = require('createerror')
 
 const API_PORT = 3001;
 const app = express();
@@ -42,9 +44,9 @@ app.use(methodOverride('_method'));
 app.use('/api', testRoutes);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
-    next(createError(404));
-});
+// app.use(function (req, res, next) {
+//     next(createError(404));
+// });
 
 // // this is our get method
 // // this method fetches all available data in our database
