@@ -1,4 +1,4 @@
-const Ticket = require('../Data/TicketModel')
+const Ticket = require('../Data/TicketModel_test')
 
 module.exports = {
     index,
