@@ -11,8 +11,8 @@ const TicketCard = () => {
 
     const getTicketsFromDb = () => {
         // 404 means that is not pulling data from backend api
-        fetch('http://localhost:3001/api/getTickets')
-            // Response {type: "cors", url: "http://localhost:3001/api/getTickets", redirected: false, status: 404, ok: false, …}
+        fetch('http://localhost:3001/tickets/getTickets')
+            // Response {type: "cors", url: "http://localhost:3001/tickets/getTickets", redirected: false, status: 404, ok: false, …}
             .then(data => data.json())
             .then(res => setCustomer(res.data))
         console.log(customer)

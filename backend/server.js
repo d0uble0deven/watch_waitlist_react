@@ -4,11 +4,13 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const Data = require('./Data/data');
+const Ticket = require('./Data/TicketModel');
 require('dotenv').config()
 const dbRoute = process.env.DB_ROUTE
 const testRoutes = require('./routes/test')
 const ticketRoutes = require('./routes/ticketRoute')
 const testCtrl = require('./controllers/test')
+const ticketCtrl = require('./controllers/ticketController')
 const path = require('path')
 var cookieParser = require('cookie-parser')
 var methodOverride = require('method-override')
@@ -41,7 +43,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
 // append /api for our http requests
-app.use('/api', testRoutes);
+// app.use('/api', testRoutes);
+app.use('/tickets', ticketRoutes);
+// app.use(app.router)
+// ticketRoutes.initialize(app)
 
 // catch 404 and forward to error handler
 // app.use(function (req, res, next) {

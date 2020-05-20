@@ -1,6 +1,5 @@
 import React from 'react';
 import { useInput } from '../Hooks/InputHooks'
-import axios from 'axios'
 
 
 export default function NameForm(props) {
@@ -11,24 +10,13 @@ export default function NameForm(props) {
     const { value: phoneNumber, bind: bindNumber, reset: resetNumber } = useInput('');
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
 
-
-    const addTicketToDb = (input) => {
-        axios.post('http://localhost:3001/tickets/addTicket', {
-            input: input
-        })
-        handleSubmit()
-
-    }
-
-    const handleSubmit = () => {
+    const handleSubmit = (event) => {
         alert(`Submitting ${firstName} ${lastName} ${phoneNumber} ${email}`);
         resetFirstName();
         resetLastName();
         resetNumber();
         resetEmail();
     };
-
-
     /* PSEUDOCODE FOR IMPLEMENTING NAME VALIDATION */
     // before it is submitted, it must be validated; after it is typed, it must be validated
     // event.preventDefault() has to happen before everything else
@@ -44,8 +32,7 @@ export default function NameForm(props) {
         const emails = /[\w-]+@([\w-]+\.)+[\w-]+/;
         if (names.test(inputFirstName) && names.test(inputLastName) && emails.test(inputEmail)) {
             if (number.test(inputNumber)) {
-                const inputs = { inputFirstName, inputLastName, inputNumber, inputEmail }
-                addTicketToDb(inputs)
+                handleSubmit()
             } else {
                 alert('Please follow the 000-000-0000 format.');
             }
@@ -56,29 +43,27 @@ export default function NameForm(props) {
     return (
         <form onSubmit={validate}>
 
-            <label>First Name: <input type="text" placeholder="Jon" {...bindFirstName} /></label>
+            <label>
+                First Name: <input type="text" placeholder="Jon" {...bindFirstName} />
+            </label>
 
-            <label>Last Name: <input type="text" placeholder="Doe" {...bindLastName} /></label>
-
-            <label>Email: <input type="email" placeholder="me@email.com" {...bindEmail} /></label>
-
-            <label>Phone Number: <input type="tel" placeholder="000-000-0000" {...bindNumber} /></label>
-
-            {/* <label>Address:<input type="text" placeholder="2211 Lawnmont Ave" /></label> */}
-
-            {/* <label>City:<input type="text" placeholder="2211 Lawnmont Ave" /></label> */}
-
-            {/* <label>State:<input type="text" placeholder="Texas" /></label> */}
-
-            {/* <label>Zip Code:<input type="text" placeholder="75034" /></label> */}
-
-            {/* <label>Date Ordered:<input type="date" placeholder="09/21/1994" /></label> */}
-
-            {/* <label>Watch Ordered:<input type="range" /></label> */}
-
-            {/* <label>Date Picked Up:<input type="date" placeholder="09/21/1994" /></label> */}
-
-            {/* <label>Fullfiled?:<input type="checkbox" placeholder="No" /></label> */}
+            <label>
+                Last Name: <input type="text" placeholder="Doe" {...bindLastName} />
+            </label>
+            <label>
+                Email: <input type="email" placeholder="me@email.com" {...bindEmail} />
+            </label>
+            <label>
+                Phone Number: <input type="tel" placeholder="000-000-0000" {...bindNumber} />
+            </label>
+            <label>Address:<input type="text" placeholder="2211 Lawnmont Ave"></input></label>
+            <label>City:<input type="text" placeholder="2211 Lawnmont Ave"></input></label>
+            <label>State:<input type="text" placeholder="Texas"></input></label>
+            <label>Zip Code:<input type="text" placeholder="75034"></input></label>
+            <label>Date Ordered:<input type="date" placeholder="09/21/1994"></input></label>
+            <label>Watch Ordered:<input type="range" ></input></label>
+            <label>Date Picked Up:<input type="date" placeholder="09/21/1994"></input></label>
+            <label>Fullfiled?:<input type="checkbox" placeholder="No"></input></label>
 
             <input type="submit" value="Submit" />
         </form>
