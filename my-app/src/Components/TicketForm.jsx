@@ -13,7 +13,8 @@ export default function NameForm(props) {
 
 
     const addTicketToDb = (input) => {
-        axios.post('http://localhost:3001/tickets/addTicket', {
+        console.log(input)
+        axios.post('http://localhost:3001/tickets/add/addTickets', {
             input: input
         })
         handleSubmit()
@@ -21,6 +22,7 @@ export default function NameForm(props) {
     }
 
     const handleSubmit = () => {
+        console.log('handleSubmit is working!')
         alert(`Submitting ${firstName} ${lastName} ${phoneNumber} ${email}`);
         resetFirstName();
         resetLastName();

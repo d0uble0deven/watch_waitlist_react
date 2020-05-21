@@ -19,13 +19,13 @@ const NavBar = () => {
                             <Link to="/">View Tickets</Link>
                         </li>
                         <li>
-                            <Link to="/add">Add Ticket</Link>
+                            <Link to="/tickets/add">Add Ticket</Link>
                         </li>
                     </ul>
                 </nav>
 
                 <Switch>
-                    <Route path="/add" component={AddPage}>
+                    <Route path="/tickets/add" component={AddPage}>
                     </Route>
                     <Route path="/" component={ViewPage}>
                     </Route>

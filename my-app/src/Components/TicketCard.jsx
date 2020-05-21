@@ -22,12 +22,12 @@ const TicketCard = () => {
 
         // console.log(item.contact_info.email)
         <Card inverse key={index} >
-            <CardTitle>{item.customer_name.first_name} {item.customer_name.last_name}</CardTitle>
+            <CardTitle>{item.first_name} {item.last_name}</CardTitle>
             <CardBody>
-                <li>{item.order.date_ordered}</li>
-                <li>{item.order.watch_ordered}</li>
-                <li>{JSON.stringify(item.order.date_fulfilled)}</li>
-                <li>{JSON.stringify(item.order.fulfilled)}</li>
+                <li>{item.date_ordered}</li>
+                <li>{item.watch_ordered}</li>
+                <li>{JSON.stringify(item.date_fulfilled)}</li>
+                <li>{JSON.stringify(item.fulfilled)}</li>
                 {/* when button is clicked it updates db with fulfillment status, 
                 updates state to remove ticket */}
                 <Button color="success">Yes</Button>
