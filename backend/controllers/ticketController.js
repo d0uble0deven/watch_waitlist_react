@@ -36,21 +36,21 @@ function addTicket(req, res) {
     // what does it have to align with?
     // what exactly is req.body doing? 
     // is this function recieving a req?
-    const { inputFirstName, inputLastName, street, city, state, zip_code, inputNumber, inputEmail, date_ordered, watch_ordered, date_fulfilled, fulfilled } = req.body.input
+    const { inputFirstName, inputLastName, inputStreet, inputCity, inputState, inputZipCode, inputNumber, inputEmail, inputDateOrdered, inputWatchOrdered, inputDateFulfilled, inputFulfilled } = req.body.input
     console.log('inputFirstName: ' + inputFirstName)
 
     ticket.first_name = inputFirstName
     ticket.last_name = inputLastName
-    ticket.street = street
-    ticket.city = city
-    ticket.state = state
-    ticket.zip_code = zip_code
+    ticket.street = inputStreet
+    ticket.city = inputCity
+    ticket.state = inputState
+    ticket.zip_code = inputZipCode
     ticket.phone_number = inputNumber
     ticket.email = inputEmail
-    ticket.date_ordered = date_ordered
-    ticket.watch_ordered = watch_ordered
-    ticket.date_fulfilled = date_fulfilled
-    ticket.fulfilled = fulfilled
+    ticket.date_ordered = inputDateOrdered
+    ticket.watch_ordered = inputWatchOrdered
+    ticket.date_fulfilled = inputDateFulfilled
+    ticket.fulfilled = inputFulfilled
 
     // ticket.first_name = 'tom'
     // ticket.last_name = 'shark'

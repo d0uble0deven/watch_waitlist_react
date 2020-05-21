@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useInput } from '../Hooks/InputHooks'
 import axios from 'axios'
 
@@ -11,6 +11,18 @@ export default function NameForm(props) {
     const { value: phoneNumber, bind: bindNumber, reset: resetNumber } = useInput('');
     const { value: email, bind: bindEmail, reset: resetEmail } = useInput('');
 
+    const { value: street, bind: bindStreet, reset: resetStreet } = useInput('');
+    const { value: city, bind: bindCity, reset: resetCity } = useInput('');
+    const { value: state, bind: bindState, reset: resetState } = useInput('');
+    const { value: zipCode, bind: bindZipCode, reset: resetZipCode } = useInput('');
+    const { value: dateOrdered, bind: bindDateOrdered, reset: resetDateOrdered } = useInput('');
+    const { value: watchOrdered, bind: bindWatchOrdered, reset: resetWatchOrdered } = useInput('');
+    const { value: dateFulfilled, bind: bindDateFulfilled, reset: resetDateFulfilled } = useInput('');
+
+    //reset is not working
+    const { reset: resetFulfilled } = useInput(false);
+    // if checkbox clicked, toggle value, either by setState(fulfilled) or !
+    const [fulfilled, setFulfilled] = useState(false)
 
     const addTicketToDb = (input) => {
         console.log(input)
@@ -23,11 +35,19 @@ export default function NameForm(props) {
 
     const handleSubmit = () => {
         console.log('handleSubmit is working!')
-        alert(`Submitting ${firstName} ${lastName} ${phoneNumber} ${email}`);
+        alert(`Submitting ${firstName} ${lastName} ${phoneNumber} ${email} ${street} ${city} ${state} ${zipCode} ${dateOrdered} ${watchOrdered} ${dateFulfilled} ${fulfilled}`);
         resetFirstName();
         resetLastName();
         resetNumber();
         resetEmail();
+        resetStreet();
+        resetCity();
+        resetState();
+        resetZipCode();
+        resetDateOrdered();
+        resetWatchOrdered();
+        resetDateFulfilled();
+        resetFulfilled();
     };
 
 
@@ -39,14 +59,15 @@ export default function NameForm(props) {
     // return true, handle submit fires off
     // return false, sends alert message 'please input valid name'
 
-    const validate = (event, inputFirstName = bindFirstName.value, inputLastName = bindLastName.value, inputNumber = bindNumber.value, inputEmail = bindEmail.value) => {
+    const validate = (event, inputFirstName = bindFirstName.value, inputLastName = bindLastName.value, inputNumber = bindNumber.value, inputEmail = bindEmail.value, inputStreet = bindStreet.value, inputCity = bindCity.value, inputState = bindState.value, inputZipCode = bindZipCode.value, inputDateOrdered = bindDateOrdered.value, inputWatchOrdered = bindWatchOrdered.value, inputDateFulfilled = bindDateFulfilled.value, inputFulfilled = fulfilled) => {
         event.preventDefault()
         const names = /^\D{2,}$/;
         const number = /^\d{3}-\d{3}-\d{4}$/;
         const emails = /[\w-]+@([\w-]+\.)+[\w-]+/;
         if (names.test(inputFirstName) && names.test(inputLastName) && emails.test(inputEmail)) {
             if (number.test(inputNumber)) {
-                const inputs = { inputFirstName, inputLastName, inputNumber, inputEmail }
+                const inputs = { inputFirstName, inputLastName, inputNumber, inputEmail, inputStreet, inputCity, inputState, inputZipCode, inputDateOrdered, inputWatchOrdered, inputDateFulfilled, inputFulfilled }
+                console.log(inputs)
                 addTicketToDb(inputs)
             } else {
                 alert('Please follow the 000-000-0000 format.');
@@ -66,21 +87,21 @@ export default function NameForm(props) {
 
             <label>Phone Number: <input type="tel" placeholder="000-000-0000" {...bindNumber} /></label>
 
-            {/* <label>Address:<input type="text" placeholder="2211 Lawnmont Ave" /></label> */}
+            <label>Street:<input type="text" placeholder="2211 Lawnmont Ave" {...bindStreet} /></label>
 
-            {/* <label>City:<input type="text" placeholder="2211 Lawnmont Ave" /></label> */}
+            <label>City:<input type="text" placeholder="2211 Lawnmont Ave" {...bindCity} /></label>
 
-            {/* <label>State:<input type="text" placeholder="Texas" /></label> */}
+            <label>State:<input type="text" placeholder="Texas" {...bindState} /></label>
 
-            {/* <label>Zip Code:<input type="text" placeholder="75034" /></label> */}
+            <label>Zip Code:<input type="text" placeholder="75034" {...bindZipCode} /></label>
 
-            {/* <label>Date Ordered:<input type="date" placeholder="09/21/1994" /></label> */}
+            <label>Watch Ordered:<input type="range" {...bindWatchOrdered} /></label>
 
-            {/* <label>Watch Ordered:<input type="range" /></label> */}
+            <label>Date Ordered:<input type="date" placeholder="09/21/1994" {...bindDateOrdered} /></label>
 
-            {/* <label>Date Picked Up:<input type="date" placeholder="09/21/1994" /></label> */}
+            <label>Date Picked Up:<input type="date" placeholder="09/21/1994" {...bindDateFulfilled} /></label>
 
-            {/* <label>Fullfiled?:<input type="checkbox" placeholder="No" /></label> */}
+            <label>Fullfiled?:<input type="checkbox" placeholder="No" onClick={() => setFulfilled(!fulfilled)} /></label>
 
             <input type="submit" value="Submit" />
         </form>
