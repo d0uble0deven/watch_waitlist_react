@@ -2,7 +2,8 @@ const Ticket = require('../Data/TicketModel')
 
 module.exports = {
     getTickets,
-    addTicket
+    addTicket,
+    showTicket,
 }
 
 
@@ -23,6 +24,20 @@ function getTickets(req, res) {
     })
 }
 
+// not working
+// ui not built??
+function showTicket(req, res) {
+    // req.params.id is undefined
+    console.log('req type: ' + typeof (req.params))
+    console.log('req keys: ' + Object.keys(req.params))
+    console.log('req values: ' + Object.values(req.params))
+    Ticket.findById(req.params, (err, data) => {
+        // data is the _id for the selected ticket
+        console.log('showTicket')
+        if (err) return res.json({ success: false, error: err });
+        return res.json({ success: true, data: data })
+    })
+}
 
 function addTicket(req, res) {
     let ticket = new Ticket()

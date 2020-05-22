@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
+import { Link } from 'react-router-dom'
 
 const TicketCard = () => {
     const [customer, setCustomer] = useState([])
@@ -23,6 +24,7 @@ const TicketCard = () => {
         <Card inverse key={index} >
             <CardTitle>{item.first_name} {item.last_name}</CardTitle>
             <CardBody>
+                id:{item._id}
                 <li>Street: {item.street}</li>
                 <li>City: {item.city}</li>
                 <li>State: {item.state}</li>
@@ -32,12 +34,13 @@ const TicketCard = () => {
                 <li>Watch Ordered: {item.watch_ordered}</li>
                 <li>Date of Order:{JSON.stringify(item.date_ordered)}</li>
                 <li>Fulfilled: {JSON.stringify(item.fulfilled)}</li>
-                <li>Date Fulfilled{JSON.stringify(item.date_fulfilled)}</li>
+                <li>Date Fulfilled: {JSON.stringify(item.date_fulfilled)}</li>
                 {/* when button is clicked it updates db with fulfillment status, 
                 updates state to remove ticket */}
                 <Button color="success">Yes</Button>
                 <Button color="secondary">No</Button>
             </CardBody>
+            <Link to="/tickets/show/:id">Update?</Link>
         </Card>
     )
 
