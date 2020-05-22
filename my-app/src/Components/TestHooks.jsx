@@ -65,7 +65,7 @@ const TestHooks = () => {
         })
     }
 
-
+    // params are user inputs
     const updateDb = (idToUpdate, updateToApply) => {
         let objIdToUpdate = null
         parseInt(idToUpdate)
