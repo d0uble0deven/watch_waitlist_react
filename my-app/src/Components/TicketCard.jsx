@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
+require('react-dom');
+window.React2 = require('react');
+console.log(window.React1 === window.React2);
+
 const TicketCard = () => {
     const [customer, setCustomer] = useState([])
 

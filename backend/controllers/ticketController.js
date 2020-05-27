@@ -31,9 +31,14 @@ function showTicket(req, res) {
     console.log('req type: ' + typeof (req.params))
     console.log('req keys: ' + Object.keys(req.params))
     console.log('req values: ' + Object.values(req.params))
-    Ticket.findById(req.params, (err, data) => {
+    console.log('debugger!')
+    debugger;
+    Ticket.findOne({
+        _id: req.params.id
+    }, (err, data) => {
         // data is the _id for the selected ticket
         console.log('showTicket')
+        console.log('_id: req.params.id: ' + Object.keys(arguments[0].body))
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true, data: data })
     })

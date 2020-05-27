@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
-import { useParams } from 'react-router-dom'
+import { useParams, useHistory } from 'react-router-dom'
+
+/*
+backend is working, 
+UI is not firing,
+Issue 1: there are two versions of react firing at once,
+prevents use of additional hooks (useParams, useHistory),
+once fixed, the ui can access the /:id in the uri
+
+Issue 1 solved by adding: `react: path.resolve('./node_modules/react'),`
+in line 302 of file my-app/node_modules/react-scripts/config/webpack.config.js
+*/
 
 
 const ShowTicket = () => {
+    const history = useHistory()
 
     // ticketInfo is an array to map out data, holds object from db
     const [ticketInfo, setTicketInfo] = useState([])
@@ -11,6 +23,14 @@ const ShowTicket = () => {
     useEffect(() => {
         getTicketInfo()
     })
+
+    const deleteFromDb = () => {
+        console.log('deleteFromDb')
+        // fetch('http://localhost:3001/tickets/delete')
+
+        // redirect to view page
+        history.push('/tickets')
+    }
     // Provides access to search parameters in the URL
     // This was possible earlier only using match.params.
     //  this means the node side must be completed, then react can grab id from url
@@ -24,17 +44,22 @@ const ShowTicket = () => {
     const getTicketInfo = () => {
 
 
-        console.log('getTicketInfo is firing')
+        console.log('!!!getTicketInfo is firing')
+        debugger;
         fetch('http://localhost:3001/tickets/show/:id')
+            // fetch('http://localhost:3001/tickets/show/${this.props.match.params.id}')
             .then(data => data.json())
-            .then(res => setTicketInfo(res.data)).then()
+            .then(res => setTicketInfo(res.data))
         // returns object from DB with ticketInfo
-
-        console.log(ticketInfo) // undefined, means not grabbing info correctly, fix node than this
+        console.log('ticketInfo: ' + ticketInfo) // undefined, means not grabbing info correctly, fix node than this
     }
 
 
     // onClick is the function that updates the DB when submitted??
+
+
+
+
 
     return (
         <div>
@@ -72,6 +97,7 @@ const ShowTicket = () => {
                 </CardBody>
                 {/*  when clicked, fires off updateToDb() with inputs as args */}
                 <input type="submit" value="Update" />
+                <input type="button" value="Delete" onClick={deleteFromDb} />
             </Card>
         </div>
     )
