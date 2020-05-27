@@ -11,6 +11,8 @@ once fixed, the ui can access the /:id in the uri
 
 Issue 1 solved by adding: `react: path.resolve('./node_modules/react'),`
 in line 302 of file my-app/node_modules/react-scripts/config/webpack.config.js
+
+Time to pull from uri once more, accessing _id and /:id, which one??
 */
 
 
