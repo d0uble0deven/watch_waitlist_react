@@ -22,17 +22,17 @@ const NavBar = () => {
                         <li>
                             <Link to="/tickets/add">Add Ticket</Link>
                         </li>
-                        <li>
+                        {/* <li>
                             <Link to="/tickets/show/:id"> Show Ticket </Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
 
                 <Switch>
                     <Route path="/tickets/add" component={AddPage}>
                     </Route>
-                    <Route path="/tickets/show/:id" component={ShowPage}>
-                    </Route>
+                    {/* <Route path="/tickets/show/:id" component={ShowPage}>
+                    </Route> */}
                     <Route path="/" component={ViewPage}>
                     </Route>
                 </Switch>

@@ -44,7 +44,7 @@ const TicketCard = () => {
                 <Button color="success">Yes</Button>
                 <Button color="secondary">No</Button>
             </CardBody>
-            <Link to="/tickets/show/:id">Update?</Link>
+            {/* <Link to="/tickets/show/:id">Update?</Link> */}
         </Card>
     )
 
