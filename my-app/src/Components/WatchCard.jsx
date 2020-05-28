@@ -4,7 +4,7 @@ import datejust from '../Images/Watches/datejust.png'
 import daytona from '../Images/Watches/daytona.png'
 import milgauss from '../Images/Watches/milgauss.png'
 import skydweller from '../Images/Watches/skydweller.png'
-import WatchCardStyling from './ComponentStyling/WatchCardStyling.css'
+import './ComponentStyling/WatchCardStyling.css'
 
 const WatchCard = () => {
     const [selected, setSelected] = useState([])
@@ -18,7 +18,8 @@ const WatchCard = () => {
             <Button className="watch_button" key={index + 1} onClick={() => onCheckboxBtnClick(index + 1)} active={selected.includes(index + 1)}>
                 <Card className="watch_card" inverse key={index + 1} >
                     <CardImgOverlay>
-                        <CardTitle className="watch_title">{item.name}{index + 1}</CardTitle>
+                        <CardTitle className="watch_title">{item.name}{index + 1}
+                        </CardTitle>
                         <CardImg className="watch_image" width="10%" src={item.image} alt={item.name} />
                     </CardImgOverlay>
                 </Card>

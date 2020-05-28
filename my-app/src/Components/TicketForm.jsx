@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useInput } from '../Hooks/InputHooks'
 import axios from 'axios'
-
+import './ComponentStyling/TicketFormStyling.css'
 
 export default function NameForm(props) {
     // const [name, setName] = useState("")
@@ -77,34 +77,50 @@ export default function NameForm(props) {
     }
 
     return (
-        <form onSubmit={validate}>
+        <div className="form_containter">
 
-            <label>First Name: <input type="text" placeholder="Jon" {...bindFirstName} /></label>
+            <h1>Add a Ticket</h1>
+            <hr />
+            <form className="ticket_form" onSubmit={validate}>
 
-            <label>Last Name: <input type="text" placeholder="Doe" {...bindLastName} /></label>
+                <label>First Name: <input type="text" placeholder="Jon" {...bindFirstName} /></label>
+                <br />
+                <br />
+                <label>Last Name: <input type="text" placeholder="Doe" {...bindLastName} /></label>
+                <br />
+                <br />
+                <label>Email: <input type="email" placeholder="me@email.com" {...bindEmail} /></label>
+                <br />
+                <br />
+                <label>Phone Number: <input type="tel" placeholder="000-000-0000" {...bindNumber} /></label>
+                <br />
+                <br />
+                <label>Street:<input type="text" placeholder="2211 Lawnmont Ave" {...bindStreet} /></label>
+                <br />
+                <br />
+                <label>City:<input type="text" placeholder="2211 Lawnmont Ave" {...bindCity} /></label>
+                <br />
+                <br />
+                <label>State:<input type="text" placeholder="Texas" {...bindState} /></label>
+                <br />
+                <br />
+                <label>Zip Code:<input type="text" placeholder="75034" {...bindZipCode} /></label>
+                <br />
+                <br />
+                <label>Watch Ordered:<input type="range" {...bindWatchOrdered} /></label>
+                <br />
+                <br />
+                <label>Date Ordered:<input type="date" placeholder="09/21/1994" {...bindDateOrdered} /></label>
+                <br />
+                <br />
+                <label>Date Picked Up:<input type="date" placeholder="09/21/1994" {...bindDateFulfilled} /></label>
 
-            <label>Email: <input type="email" placeholder="me@email.com" {...bindEmail} /></label>
+                <label>Fullfiled?:<input id="check" type="checkbox" placeholder="No" onClick={() => setFulfilled(!fulfilled)} /></label>
 
-            <label>Phone Number: <input type="tel" placeholder="000-000-0000" {...bindNumber} /></label>
+                <input type="submit" value="Submit" />
+            </form>
 
-            <label>Street:<input type="text" placeholder="2211 Lawnmont Ave" {...bindStreet} /></label>
-
-            <label>City:<input type="text" placeholder="2211 Lawnmont Ave" {...bindCity} /></label>
-
-            <label>State:<input type="text" placeholder="Texas" {...bindState} /></label>
-
-            <label>Zip Code:<input type="text" placeholder="75034" {...bindZipCode} /></label>
-
-            <label>Watch Ordered:<input type="range" {...bindWatchOrdered} /></label>
-
-            <label>Date Ordered:<input type="date" placeholder="09/21/1994" {...bindDateOrdered} /></label>
-
-            <label>Date Picked Up:<input type="date" placeholder="09/21/1994" {...bindDateFulfilled} /></label>
-
-            <label>Fullfiled?:<input type="checkbox" placeholder="No" onClick={() => setFulfilled(!fulfilled)} /></label>
-
-            <input type="submit" value="Submit" />
-        </form>
+        </div>
 
     )
 }
