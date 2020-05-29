@@ -1,6 +1,5 @@
 .watch_list{
-    background-color: wheat;
-    border: solid black 2px;
+    border: solid wheat 2px;
     display: inline-grid;
     grid-template-columns: 2fr 2fr 2fr;
     grid-template-rows: auto;
@@ -8,29 +7,29 @@
     width: 11em;
 }
 .watch_button {
-    background-color: red;
+    /* background-color: red; */
     margin-top: 1em;
     margin-right: 1em;
     height: 11em;
-    width: 10em;
+    width: 11em;
     color: darkorchid;
 
 }
 .watch_card {
-    background-color: blue;
+    /* background-color: blue; */
 
 }
 .watch_title {
-    background-color: yellow;
+    /* background-color: yellow; */
     font-size: larger;
     font-weight: bolder;
 }
 .watch_image {
-    background-color: green;
+    /* background-color: green; */
     height: 7em;
     width: 7em;
 }
 .watch_select_all {
-    background-color: violet;
+    /* background-color: violet; */
     display: block;
 }
