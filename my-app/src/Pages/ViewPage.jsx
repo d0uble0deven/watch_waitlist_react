@@ -4,16 +4,30 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import TicketCard from '../Components/TicketCard';
 import TestHooks from '../Components/TestHooks';
+import { UnmountClosed } from 'react-collapse';
+
 
 const ViewPage = () => {
     const [selected, setSelected] = useState(false)
+    const [showWatches, setShowWatches] = useState(false)
 
+    const uncollapseWatches = () => {
+        console.log(!showWatches)
+        setShowWatches(!showWatches)
+        if (showWatches) {
+            return <div></div>
+        }
+        else {
+            return <WatchCard />
+        }
+    }
 
     return (
         <div>
-            <p>Select a watch:</p>
-
-            <WatchCard />
+            <button onClick={uncollapseWatches}>show watches</button>
+            {/* <UnmountClosed isOpened={true || false}> */}
+            {/* <WatchCard /> */}
+            {/* </UnmountClosed> */}
 
 
             <div className="TicketView">
