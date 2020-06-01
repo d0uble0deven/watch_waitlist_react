@@ -16,11 +16,9 @@ const WatchCard = (props) => {
                 <br />
                 <Button className="watch_button" >
                     <Card className="watch_card" inverse >
-                        <CardImgOverlay>
-                            <CardTitle className="watch_title">{props.name}
-                            </CardTitle>
-                            <CardImg className="watch_image" width="10%" src={props.image} alt={props.name} />
-                        </CardImgOverlay>
+                        <CardTitle className="watch_title">{props.name}
+                        </CardTitle>
+                        <CardImg className="watch_image" width="10%" src={props.image} alt={props.name} />
                     </Card>
                 </Button>
             </div>

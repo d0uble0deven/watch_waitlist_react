@@ -27,9 +27,9 @@ const TicketCard = () => {
     const listCustomer = customer.map((item, index) =>
 
         <Card inverse key={index} >
-            <Button color="danger">x</Button>
+            <Button outline color='danger' size='sm'>x</Button>
             <CardTitle>{item.first_name} {item.last_name}</CardTitle>
-            <CardBody style={{ color: 'black' }}>
+            <CardBody >
                 id:{item._id}
                 <li>Street: {item.street}</li>
                 <li>City: {item.city}</li>

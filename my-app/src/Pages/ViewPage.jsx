@@ -45,7 +45,7 @@ const ViewPage = () => {
 
     return (
         <div>
-            <Button size="lg" className={`accordion ${isActive}`} onClick={toggleAccordion}>
+            <Button size="lg" color='info' className={`accordion ${isActive}`} onClick={toggleAccordion}>
                 <p>view watches</p>
                 <Chevron className={`${rotation}`} width={10} fill={"#777"} />
             </Button>

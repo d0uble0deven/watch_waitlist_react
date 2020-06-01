@@ -6,17 +6,22 @@
     /* height: 11em;
     width: 11em; */
 }
+*{
+    color: black
+}
 .watch_button {
     /* background-color: red; */
     margin-top: 1em;
     margin-right: 1em;
-    height: 11em;
-    width: 11em;
+    height: 13em;
+    width: 13em;
     color: darkorchid;
 
 }
 .watch_card {
     /* background-color: blue; */
+    /* max-height: max-content;
+    max-width: max-content; */
 
 }
 .watch_title {
