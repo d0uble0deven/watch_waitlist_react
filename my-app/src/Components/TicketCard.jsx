@@ -24,13 +24,25 @@ const TicketCard = () => {
         console.log(customer)
     }
 
+    const deleteTicket = (id) => {
+        console.log('deleteTicket')
+        console.log(id)
+        // takes in id, filter it out, show all that do now have id
+        setCustomer(customer.filter(item => item.id !== id))
+        console.log(customer)
+    }
+
+
+
     const listCustomer = customer.map((item, index) =>
 
         <Card inverse key={index} >
-            <Button outline color='danger' size='sm'>x</Button>
-            <CardTitle>{item.first_name} {item.last_name}</CardTitle>
+            {/* copy and paste _id in to input form to delete */}
+            <input></input>
+            <Button style={{ width: 50 }} outline color='danger' size='sm' type="submit" onClick={deleteTicket}>x</Button>
+            <CardTitle>id:{item._id}</CardTitle>
             <CardBody >
-                id:{item._id}
+                <li>Name:{item.first_name} {item.last_name}</li>
                 <li>Street: {item.street}</li>
                 <li>City: {item.city}</li>
                 <li>State: {item.state}</li>
@@ -44,11 +56,12 @@ const TicketCard = () => {
                 {/* when button is clicked it updates db with fulfillment status, 
                 updates state to remove ticket */}
                 {/* input_check or button, check is set as boolean, button has to have both button */}
-                {/* if button is clicked it fires an function,
+
+                {/* if button is clicked it fires a function,
                 the function updates the db field for fulfilled, 
             updates the date_fulfilled to Date.now() */}
-                <Button color="success">Yes</Button>
-                <Button color="secondary">No</Button>
+                <Button outline color="success">Yes</Button>
+                <Button outline color="secondary">No</Button>
             </CardBody>
             {/* <Link to="/tickets/show/:id">Update?</Link> */}
         </Card>

@@ -5,6 +5,7 @@ const ticketCtrl = require('../controllers/ticketController')
 router
     .get('/getTickets', ticketCtrl.getTickets)
     .post('/add/addTickets', ticketCtrl.addTicket)
-    .get('/show/:d', ticketCtrl.showTicket)
+    .delete('/deleteTicket', ticketCtrl.deleteTicket)
+// .get('/show/:d', ticketCtrl.showTicket)
 
 module.exports = router;
