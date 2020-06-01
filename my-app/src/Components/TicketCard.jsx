@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Card, CardBody, CardTitle, Button } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
+
 require('react-dom');
 window.React2 = require('react');
 console.log(window.React1 === window.React2);
@@ -26,10 +27,9 @@ const TicketCard = () => {
     const listCustomer = customer.map((item, index) =>
 
         <Card inverse key={index} >
-            <Button>x</Button>
-
+            <Button color="danger">x</Button>
             <CardTitle>{item.first_name} {item.last_name}</CardTitle>
-            <CardBody>
+            <CardBody style={{ color: 'black' }}>
                 id:{item._id}
                 <li>Street: {item.street}</li>
                 <li>City: {item.city}</li>
@@ -43,6 +43,10 @@ const TicketCard = () => {
                 <li>Date Fulfilled: {JSON.stringify(item.date_fulfilled)}</li>
                 {/* when button is clicked it updates db with fulfillment status, 
                 updates state to remove ticket */}
+                {/* input_check or button, check is set as boolean, button has to have both button */}
+                {/* if button is clicked it fires an function,
+                the function updates the db field for fulfilled, 
+            updates the date_fulfilled to Date.now() */}
                 <Button color="success">Yes</Button>
                 <Button color="secondary">No</Button>
             </CardBody>
