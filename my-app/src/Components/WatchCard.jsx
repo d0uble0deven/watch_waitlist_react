@@ -7,29 +7,14 @@ import skydweller from '../Images/Watches/skydweller.png'
 import './ComponentStyling/WatchCardStyling.css'
 
 
-const WatchCard = () => {
-    const watches = [
-        { name: 'Cosmograph Daytona', image: daytona }, { name: 'Sky Dweller', image: skydweller }, { name: 'Datejust', image: datejust }, { name: 'Milgauss', image: milgauss }];
-    const [selected, setSelected] = useState(Array(watches.length).fill(null))
+const WatchCard = (props) => {
+
+    const [selected, setSelected] = useState([])
     const [name, setName] = useState('')
 
 
 
-    const listWatches = watches.map((item, index) =>
-        <div className="watch_list" key={index} >
-            <br />
-            <Button className="watch_button" onClick={() => onWatchClick(item.name)} active={selected.includes(index)}>
-                <Card className="watch_card" inverse >
-                    <CardImgOverlay>
-                        <CardTitle className="watch_title">{item.name}
-                        </CardTitle>
-                        <CardImg className="watch_image" width="10%" src={item.image} alt={item.name} />
-                    </CardImgOverlay>
-                </Card>
-            </Button>
-        </div>
 
-    )
 
     const onWatchClick = (input) => {
 
@@ -77,7 +62,21 @@ const WatchCard = () => {
     return (
         <div>
 
-            {listWatches}
+            <div className="watch_list" key={props.index} >
+                <br />
+                <Button className="watch_button" onClick={() => onWatchClick(props.name)} >
+                    <Card className="watch_card" inverse >
+                        <CardImgOverlay>
+                            <CardTitle className="watch_title">{props.name}
+                            </CardTitle>
+                            <CardImg className="watch_image" width="10%" src={props.image} alt={props.name} />
+                        </CardImgOverlay>
+                    </Card>
+                </Button>
+            </div>
+
+
+
 
 
 

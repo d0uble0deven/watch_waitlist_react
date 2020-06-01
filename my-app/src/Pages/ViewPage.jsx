@@ -4,32 +4,29 @@ import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import TicketCard from '../Components/TicketCard';
 import TestHooks from '../Components/TestHooks';
-import { UnmountClosed } from 'react-collapse';
+import datejust from '../Images/Watches/datejust.png'
+import daytona from '../Images/Watches/daytona.png'
+import milgauss from '../Images/Watches/milgauss.png'
+import skydweller from '../Images/Watches/skydweller.png'
 
 
 const ViewPage = () => {
     const [selected, setSelected] = useState(false)
     const [showWatches, setShowWatches] = useState(false)
 
-    const uncollapseWatches = () => {
-        console.log(!showWatches)
-        setShowWatches(!showWatches)
-        if (showWatches) {
-            return <div></div>
-        }
-        else {
-            return <WatchCard />
-        }
-    }
+    const watches = [
+        { name: 'Cosmograph Daytona', image: daytona }, { name: 'Sky Dweller', image: skydweller }, { name: 'Datejust', image: datejust }, { name: 'Milgauss', image: milgauss }];
+
+
 
     return (
         <div>
-            <button onClick={uncollapseWatches}>show watches</button>
-            {/* <UnmountClosed isOpened={true || false}> */}
-            {/* <WatchCard /> */}
-            {/* </UnmountClosed> */}
 
-
+            {watches.map((item, index) =>
+                <div key={index}>
+                    <WatchCard name={item.name} image={item.image} />
+                </div>
+            )}
             <div className="TicketView">
 
                 <Tabs>

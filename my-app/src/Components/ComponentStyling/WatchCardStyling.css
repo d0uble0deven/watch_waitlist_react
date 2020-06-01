@@ -1,5 +1,5 @@
 .watch_list{
-    border: solid wheat 2px;
+    /* border: solid wheat 2px; */
     display: inline-grid;
     grid-template-columns: 2fr 2fr 2fr;
     grid-template-rows: auto;
