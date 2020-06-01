@@ -1,10 +1,10 @@
 .watch_list{
     /* border: solid wheat 2px; */
-    display: inline-grid;
+    /* display: inline-grid;
     grid-template-columns: 2fr 2fr 2fr;
-    grid-template-rows: auto;
-    height: 11em;
-    width: 11em;
+    grid-template-rows: auto; */
+    /* height: 11em;
+    width: 11em; */
 }
 .watch_button {
     /* background-color: red; */
@@ -28,8 +28,4 @@
     /* background-color: green; */
     height: 7em;
     width: 7em;
-}
-.watch_select_all {
-    /* background-color: violet; */
-    display: block;
 }

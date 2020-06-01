@@ -26,6 +26,8 @@ const TicketCard = () => {
     const listCustomer = customer.map((item, index) =>
 
         <Card inverse key={index} >
+            <Button>x</Button>
+
             <CardTitle>{item.first_name} {item.last_name}</CardTitle>
             <CardBody>
                 id:{item._id}
