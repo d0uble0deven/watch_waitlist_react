@@ -8,25 +8,11 @@ window.React2 = require('react');
 console.log(window.React1 === window.React2);
 
 const TicketCard = (props) => {
-    // const [customer, setCustomer] = useState([])
 
-    // get tickets from DB
-    useEffect(() => {
-        // getTicketsFromDb()
-    })
-
-    // const getTicketsFromDb = () => {
-    //     // 404 means that is not pulling data from backend api
-    //     fetch('http://localhost:3001/tickets/getTickets')
-    //         // Response {type: "cors", url: "http://localhost:3001/tickets/getTickets", redirected: false, status: 404, ok: false, …}
-    //         .then(data => data.json())
-    //         .then(res => setCustomer(res.data))
-    //     console.log(customer)
-    // }
 
     const deleteTicket = (id) => {
-        console.log('deleteTicket')
-        console.log('id: ' + Object.keys(id))
+        // console.log('deleteTicket')
+        // console.log('id: ' + Object.keys(id))
         // takes in id, filter it out, show all that do now have id
         // setCustomer(customer.filter(element => element.id !== id))
         // console.log(customer)
@@ -38,8 +24,8 @@ const TicketCard = (props) => {
 
             <Card inverse>
                 {/* copy and paste _id in to input form to delete */}
-                {/* <input></input> */}
-                <Button value={props._id} style={{ width: 50 }} outline color='danger' size='sm' type="submit" onClick={deleteTicket}>{props._id}</Button>
+                <input></input>
+                <Button value={props._id} size='lg' outline color='danger' size='sm' type="submit" onClick={deleteTicket}>Delete:  {props.id} </Button>
                 <CardTitle>id:{props._id}</CardTitle>
                 <CardBody >
                     <li>Name:{props.first_name} {props.last_name}</li>

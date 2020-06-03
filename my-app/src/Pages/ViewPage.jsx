@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import WatchCard from '../Components/WatchCard'
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import { Button } from 'reactstrap';
@@ -15,17 +15,29 @@ import Chevron from '../Components/Chevron';
 
 const ViewPage = () => {
 
+    const [time, setTime] = useState('')
+
     // get ticket data
     const [customer, setCustomer] = useState([])
+    const [isTCActive, setIsTCActive] = useState('active')
+    const [ticketHeight, setTicketHeight] = useState('0px')
+    const [tCRotation, setTCRotation] = useState('accordion_icon')
+
 
     // gets tickets from db when 'View Search Results' is clicked
     const getTicketsFromDb = () => {
-        // 404 means that is not pulling data from backend api
-        fetch('http://localhost:3001/tickets/getTickets')
-            // Response {type: "cors", url: "http://localhost:3001/tickets/getTickets", redirected: false, status: 404, ok: false, …}
-            .then(data => data.json())
-            .then(res => setCustomer(res.data))
-        console.log(customer)
+        setTime(new Date().toLocaleString())
+        console.log('getTicketsFromDb firing')
+        if (isTCActive === 'active') {
+
+            // 404 means that is not pulling data from backend api
+            fetch('http://localhost:3001/tickets/getTickets')
+                // Response {type: "cors", url: "http://localhost:3001/tickets/getTickets", redirected: false, status: 404, ok: false, …}
+                .then(data => data.json())
+                .then(res => setCustomer(res.data))
+                .then(console.log(customer))
+        }
+
     }
 
 
@@ -43,12 +55,24 @@ const ViewPage = () => {
     add accordion_content css to WatchCard???  no effect
     add useRef???  no effect
     brute - set css to dissapear items
-    
+     
     if isActive === '' {dont fire map function}
-
-
+    
+    
     */
+    // useEffect(
+    //     isTCActive === 'active' ? getTicketsFromDb() : console.log('help')
 
+    // )
+
+    const toggleTCAccordion = () => {
+        getTicketsFromDb()
+        setIsTCActive(isTCActive === '' ? 'active' : '')
+        // if (isTCActive === 'active') {
+        // }
+        setTicketHeight(isTCActive === 'active' ? '0px' : '1000px')
+        setTCRotation(isTCActive === 'active' ? 'accordion_icon' : 'accordion_icon rotate')
+    }
 
     const toggleAccordion = () => {
         setIsActive(isActive === '' ? 'active' : '')
@@ -59,7 +83,7 @@ const ViewPage = () => {
 
     return (
         <div>
-            <Button size="lg" color='info' className={`accordion ${isActive}`} onClick={toggleAccordion}>
+            <Button size="lg" outline color='info' className={`accordion ${isActive}`} onClick={toggleAccordion}>
                 <p>view watches</p>
                 <Chevron className={`${rotation}`} width={10} fill={"#777"} />
             </Button>
@@ -68,8 +92,7 @@ const ViewPage = () => {
                 watches.map((item, index) => {
                     return (<div style={{ maxHeight: `${watchHeight}` }} key={index}>
                         <WatchCard name={item.name} image={item.image} />
-                    </div>
-                    )
+                    </div>)
                 })
                 :
                 <div></div>
@@ -86,27 +109,38 @@ const ViewPage = () => {
                     <TabPanel>
                         <h2>All Tickets</h2>
 
-                        {(2 === 2) ?
+                        {/* <Button size="lg" color='info' outline className={`accordion ${isTCActive}`} onClick={toggleTCAccordion}>
+                            <p>View Search Results</p>
+                            <Chevron className={`${tCRotation}`} width={10} fill={"#777"} />
+                        </Button> */}
+
+
+                        <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View Most Recent Results</Button>
+                        Last Updated: {new Date().toLocaleString()}
+
+                        {(isTCActive === 'active') ?
                             customer.map((item, index) => {
-                                return (<div key={index}>
-                                    <TicketCard
-                                        first_name={item.first_name}
-                                        last_name={item.last_name}
-                                        street={item.street}
-                                        city={item.city}
-                                        state={item.state}
-                                        zip_code={item.zip_code}
-                                        phone_number={item.phone_number}
-                                        email={item.email}
-                                        watch_ordered={item.watch_ordered}
-                                        date_ordered={JSON.stringify(item.date_ordered)}
-                                        fulfilled={JSON.stringify(item.fulfilled)}
-                                        date_fulfilled={JSON.stringify(item.date_fulfilled)}
-                                    />
-                                </div>
-                                )
+                                return (
+                                    <div key={index}>
+                                        <TicketCard
+                                            id={item._id}
+                                            first_name={item.first_name}
+                                            last_name={item.last_name}
+                                            street={item.street}
+                                            city={item.city}
+                                            state={item.state}
+                                            zip_code={item.zip_code}
+                                            phone_number={item.phone_number}
+                                            email={item.email}
+                                            watch_ordered={item.watch_ordered}
+                                            date_ordered={JSON.stringify(item.date_ordered)}
+                                            fulfilled={JSON.stringify(item.fulfilled)}
+                                            date_fulfilled={JSON.stringify(item.date_fulfilled)}
+                                        />
+                                    </div>)
                             })
-                            : <div></div>
+                            :
+                            <div></div>
                         }
                     </TabPanel>
                     <TabPanel>
