@@ -6,6 +6,7 @@ const logger = require('morgan');
 require('dotenv').config()
 const dbRoute = process.env.DB_ROUTE
 const ticketRoutes = require('./routes/ticketRoute')
+const watchRoutes = require('./routes/watchRoute')
 const path = require('path')
 var cookieParser = require('cookie-parser')
 var methodOverride = require('method-override')
@@ -36,6 +37,7 @@ app.use(methodOverride('_method'));
 
 // append /api for our http requests
 app.use('/tickets', ticketRoutes);
+app.use('/watches', watchRoutes);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
