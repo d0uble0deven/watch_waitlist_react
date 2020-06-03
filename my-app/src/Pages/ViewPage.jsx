@@ -15,6 +15,7 @@ import Chevron from '../Components/Chevron';
 
 const ViewPage = () => {
 
+    const [watches, setWatches] = useState([])
     const [time, setTime] = useState('')
 
     // get ticket data
@@ -46,8 +47,18 @@ const ViewPage = () => {
     const [watchHeight, setWatchHeight] = useState('0px')
     const [rotation, setRotation] = useState('accordion_icon')
 
-    const watches = [
-        { name: 'Cosmograph Daytona', image: daytona }, { name: 'Sky Dweller', image: skydweller }, { name: 'Milgauss', image: milgauss }, { name: 'Datejust', image: datejust }];
+    const getWatchesFromDb = () => {
+        console.log('hello')
+        if (rotation === 'accordion_icon') {
+            fetch('http://localhost:3001/watches/getWatches')
+                .then(data => data.json())
+                .then(res => setWatches(res.data))
+                .then(console.log(watches))
+        }
+
+    }
+    // const watches = [
+    //     { name: 'Cosmograph Daytona', image: daytona }, { name: 'Sky Dweller', image: skydweller }, { name: 'Milgauss', image: milgauss }, { name: 'Datejust', image: datejust }];
 
 
 
@@ -57,8 +68,8 @@ const ViewPage = () => {
     brute - set css to dissapear items
      
     if isActive === '' {dont fire map function}
-    
-    
+     
+     
     */
     // useEffect(
     //     isTCActive === 'active' ? getTicketsFromDb() : console.log('help')
@@ -75,6 +86,7 @@ const ViewPage = () => {
     }
 
     const toggleAccordion = () => {
+        getWatchesFromDb()
         setIsActive(isActive === '' ? 'active' : '')
         setWatchHeight(isActive === 'active' ? '0px' : '1000px')
         setRotation(isActive === 'active' ? 'accordion_icon' : 'accordion_icon rotate')
@@ -87,6 +99,8 @@ const ViewPage = () => {
                 <p>view watches</p>
                 <Chevron className={`${rotation}`} width={10} fill={"#777"} />
             </Button>
+
+            {/* <Button outline color='info' size='sm' onClick={getWatchesFromDb}>View Watches</Button> */}
 
             {(isActive === 'active') ?
                 watches.map((item, index) => {

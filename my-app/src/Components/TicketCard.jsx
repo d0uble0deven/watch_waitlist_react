@@ -23,9 +23,7 @@ const TicketCard = (props) => {
         <div>
 
             <Card inverse>
-                {/* copy and paste _id in to input form to delete */}
-                <input></input>
-                <Button value={props._id} size='lg' outline color='danger' size='sm' type="submit" onClick={deleteTicket}>Delete:  {props.id} </Button>
+
                 <CardTitle>id:{props._id}</CardTitle>
                 <CardBody >
                     <li>Name:{props.first_name} {props.last_name}</li>
@@ -48,8 +46,11 @@ const TicketCard = (props) => {
             updates the date_fulfilled to Date.now() */}
                     <Button outline color="success">Yes</Button>
                     <Button outline color="secondary">No</Button>
+                    {/* copy and paste _id in to input form to delete */}
+                    <input></input>
+                    <Button value={props._id} size='lg' outline color='danger' size='sm' type="submit" onClick={deleteTicket}>Delete:  {props.id} </Button>
+                    {/* <Link to="/tickets/show/:id">Update?</Link> */}
                 </CardBody>
-                {/* <Link to="/tickets/show/:id">Update?</Link> */}
             </Card>
 
 
