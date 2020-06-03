@@ -14,6 +14,12 @@ import Chevron from '../Components/Chevron';
 
 
 const ViewPage = () => {
+    //TODO
+    //// join tables of fulfilled && watch_name && watch_ordered
+    // if 'allTab' === selected/true/clicked, run getByWatch.Name fetch
+    // if 'pendingTab' === selected/true/clicked, run getByWatch.Name && getByWatch.fulfilled fetch
+    // if 'fulfilledTab' === selected/true/clicked, run getByWatch.Name && getByWatch.fulfilled fetch
+    //^TODO^
 
     const [watches, setWatches] = useState([])
     const [time, setTime] = useState('')
