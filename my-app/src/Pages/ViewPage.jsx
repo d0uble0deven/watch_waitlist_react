@@ -15,7 +15,21 @@ import Chevron from '../Components/Chevron';
 
 const ViewPage = () => {
 
-    // collapsible component
+    // get ticket data
+    const [customer, setCustomer] = useState([])
+
+    // gets tickets from db when 'View Search Results' is clicked
+    const getTicketsFromDb = () => {
+        // 404 means that is not pulling data from backend api
+        fetch('http://localhost:3001/tickets/getTickets')
+            // Response {type: "cors", url: "http://localhost:3001/tickets/getTickets", redirected: false, status: 404, ok: false, …}
+            .then(data => data.json())
+            .then(res => setCustomer(res.data))
+        console.log(customer)
+    }
+
+
+    // collapsible WC component
     const [isActive, setIsActive] = useState('')
     const [watchHeight, setWatchHeight] = useState('0px')
     const [rotation, setRotation] = useState('accordion_icon')
@@ -71,7 +85,29 @@ const ViewPage = () => {
 
                     <TabPanel>
                         <h2>All Tickets</h2>
-                        <TicketCard />
+
+                        {(2 === 2) ?
+                            customer.map((item, index) => {
+                                return (<div key={index}>
+                                    <TicketCard
+                                        first_name={item.first_name}
+                                        last_name={item.last_name}
+                                        street={item.street}
+                                        city={item.city}
+                                        state={item.state}
+                                        zip_code={item.zip_code}
+                                        phone_number={item.phone_number}
+                                        email={item.email}
+                                        watch_ordered={item.watch_ordered}
+                                        date_ordered={JSON.stringify(item.date_ordered)}
+                                        fulfilled={JSON.stringify(item.fulfilled)}
+                                        date_fulfilled={JSON.stringify(item.date_fulfilled)}
+                                    />
+                                </div>
+                                )
+                            })
+                            : <div></div>
+                        }
                     </TabPanel>
                     <TabPanel>
                         <h2>Pending Tickets</h2>
@@ -84,7 +120,7 @@ const ViewPage = () => {
 
             </div>
 
-        </div>
+        </div >
     )
 
 }
