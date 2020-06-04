@@ -26,6 +26,7 @@ const ViewPage = () => {
 
     // get ticket data
     const [customer, setCustomer] = useState([])
+
     const [isTCActive, setIsTCActive] = useState('active')
     const [ticketHeight, setTicketHeight] = useState('0px')
     const [tCRotation, setTCRotation] = useState('accordion_icon')
@@ -119,6 +120,8 @@ const ViewPage = () => {
             }
 
             <div className="TicketView">
+                <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View Most Recent Results</Button>
+                        Last Updated: {new Date().toLocaleString()}
                 <Tabs>
                     <TabList>
                         <Tab>All</Tab>
@@ -135,8 +138,6 @@ const ViewPage = () => {
                         </Button> */}
 
 
-                        <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View Most Recent Results</Button>
-                        Last Updated: {new Date().toLocaleString()}
 
                         {(isTCActive === 'active') ?
                             customer.map((item, index) => {
@@ -144,6 +145,7 @@ const ViewPage = () => {
                                     <div key={index}>
                                         <TicketCard
                                             id={item._id}
+                                            // name to left of assigment is what name must be in child
                                             first_name={item.first_name}
                                             last_name={item.last_name}
                                             street={item.street}

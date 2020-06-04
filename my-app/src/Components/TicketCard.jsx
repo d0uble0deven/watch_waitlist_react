@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Card, CardBody, CardTitle, Button } from 'reactstrap';
+import { Card, CardBody, CardTitle, Button, Input } from 'reactstrap';
 import { Link } from 'react-router-dom'
 
 
@@ -24,7 +24,7 @@ const TicketCard = (props) => {
 
             <Card inverse>
 
-                <CardTitle>id:{props._id}</CardTitle>
+                <CardTitle>id: {props.id} </CardTitle>
                 <CardBody >
                     <li>Name:{props.first_name} {props.last_name}</li>
                     <li>Street: {props.street}</li>
@@ -47,8 +47,8 @@ const TicketCard = (props) => {
                     <Button outline color="success">Yes</Button>
                     <Button outline color="secondary">No</Button>
                     {/* copy and paste _id in to input form to delete */}
-                    <input></input>
-                    <Button value={props._id} size='lg' outline color='danger' size='sm' type="submit" onClick={deleteTicket}>Delete:  {props.id} </Button>
+                    <Input />
+                    <Button value={props._id} size='lg' outline color='danger' size='sm' type="submit" onClick={deleteTicket}>Delete: {props.id} </Button>
                     {/* <Link to="/tickets/show/:id">Update?</Link> */}
                 </CardBody>
             </Card>

@@ -14,7 +14,7 @@ const WatchCard = (props) => {
 
             <div className="watch_list" key={props.index} >
                 <br />
-                <Button className="watch_button" >
+                <Button className="watch_button" value={props.name}>
                     <Card className="watch_card" inverse >
                         <CardTitle className="watch_title">{props.name}
                         </CardTitle>
