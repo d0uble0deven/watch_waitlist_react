@@ -15,11 +15,21 @@ import Chevron from '../Components/Chevron';
 
 const ViewPage = () => {
     //TODO
+
+    // when i click the watch button, onClick={customer.filter(tickets=>tickets.watch_ordered === e.target.value; setSelectedWatch(e.target.value))}
+
+
     //// join tables of fulfilled && watch_name && watch_ordered
     // if 'allTab' === selected/true/clicked, run getByWatch.Name fetch
     // if 'pendingTab' === selected/true/clicked, run getByWatch.Name && getByWatch.fulfilled fetch
     // if 'fulfilledTab' === selected/true/clicked, run getByWatch.Name && getByWatch.fulfilled fetch
     //^TODO^
+
+    // show tickets only for selectedWatches
+    const [selectedWatch, setSelectedWatch] = useState('') // not name, but _id of watch
+
+
+
 
     // tabs
     const [currentTab, setCurrentTab] = useState(1)
@@ -33,9 +43,10 @@ const ViewPage = () => {
 
     // make sure than this.state.customer is set to tickets filtered by watch before running this fn
     const filterTickets = () => {
-        if (currentTab === 2) {
+        if (currentTab === 0) {
             customer.filter(ticket => console.log(ticket))
         }
+        // may have to live inside tab, combined with map
         if (currentTab === 1) {
             customer.filter(ticket => ticket.fulfilled === false)
         }
@@ -136,13 +147,14 @@ const ViewPage = () => {
             {(isActive === 'active') ?
                 watches.map((item, index) => {
                     return (<div style={{ maxHeight: `${watchHeight}` }} key={index}>
-                        <WatchCard name={item.name} image={item.image} />
+                        <WatchCard name={item.name} image={item.image} setSelectedWatch={setSelectedWatch} id={item._id} />
                     </div>)
                 })
                 :
                 <div></div>
             }
-
+            <br />
+            <hr />
             <div className="TicketView">
                 <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View Most Recent Results</Button>
                         Last Updated: {new Date().toLocaleString()}
