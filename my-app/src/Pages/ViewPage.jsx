@@ -21,6 +21,30 @@ const ViewPage = () => {
     // if 'fulfilledTab' === selected/true/clicked, run getByWatch.Name && getByWatch.fulfilled fetch
     //^TODO^
 
+    // tabs
+    const [currentTab, setCurrentTab] = useState(1)
+
+    const handleCurrentTab = (index) => {
+        console.log('index: ' + index) // shows what was just cliked
+        setCurrentTab(index)
+        console.log('currentTab: ' + currentTab) // shows what was just setState
+        filterTickets()
+    }
+
+    // make sure than this.state.customer is set to tickets filtered by watch before running this fn
+    const filterTickets = () => {
+        if (currentTab === 2) {
+            customer.filter(ticket => console.log(ticket))
+        }
+        if (currentTab === 1) {
+            customer.filter(ticket => ticket.fulfilled === false)
+        }
+        if (currentTab === 2) {
+            customer.filter(ticket => ticket.fulfilled === true)
+        }
+
+    }
+
     const [watches, setWatches] = useState([])
     const [time, setTime] = useState('')
 
@@ -122,7 +146,7 @@ const ViewPage = () => {
             <div className="TicketView">
                 <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View Most Recent Results</Button>
                         Last Updated: {new Date().toLocaleString()}
-                <Tabs>
+                <Tabs selectedIndex={currentTab} onSelect={handleCurrentTab}>
                     <TabList>
                         <Tab>All</Tab>
                         <Tab>Pending</Tab>
