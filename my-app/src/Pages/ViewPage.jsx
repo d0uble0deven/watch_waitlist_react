@@ -147,7 +147,7 @@ const ViewPage = () => {
             {(isActive === 'active') ?
                 watches.map((item, index) => {
                     return (<div style={{ maxHeight: `${watchHeight}` }} key={index}>
-                        <WatchCard name={item.name} image={item.image} setSelectedWatch={setSelectedWatch} id={item._id} />
+                        <WatchCard name={item.name} image={item.image} selectedWatch={selectedWatch} setSelectedWatch={setSelectedWatch} id={item._id} />
                     </div>)
                 })
                 :
