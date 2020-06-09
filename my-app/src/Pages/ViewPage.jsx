@@ -13,6 +13,12 @@ import TestHooks from '../Components/TestHooks';
 import Chevron from '../Components/Chevron';
 
 
+
+// when watch is clicked, filter data with watch_ordered
+// setCustomer(result)
+// tabFilter customer
+// TicketModel.watch_ordered needs to be embedded WatchModel._id
+
 const ViewPage = () => {
 
     // show tickets only for selectedWatches

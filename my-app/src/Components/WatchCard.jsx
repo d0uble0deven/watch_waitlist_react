@@ -23,7 +23,7 @@ const WatchCard = (props) => {
 
             <div className="watch_list" key={props.index} >
                 <br />
-                <Button className="watch_button" color='success' value={props.name} id={props.id} onClick={handleClick}>
+                <Button className="watch_button" outline color='success' value={props.name} id={props.id} onClick={handleClick}>
                     <Card className="watch_card" inverse >
                         <CardTitle className="watch_title">{props.name}</CardTitle>
                         <CardImg className="watch_image" width="10%" src={props.image} alt={props.name} id={props.id} />
