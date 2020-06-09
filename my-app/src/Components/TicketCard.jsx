@@ -35,7 +35,7 @@ const TicketCard = (props) => {
                     <li>Email: {props.email}</li>
                     <li>Watch Ordered: {props.watch_ordered}</li>
                     <li>Date of Order:{JSON.stringify(props.date_ordered)}</li>
-                    <li>Fulfilled: {JSON.stringify(props.fulfilled)}</li>
+                    <li>Fulfilled: {props.fulfilled}</li>
                     <li>Date Fulfilled: {JSON.stringify(props.date_fulfilled)}</li>
                     {/* when button is clicked it updates db with fulfillment status, 
                 updates state to remove ticket */}

@@ -6,29 +6,17 @@ import 'react-tabs/style/react-tabs.css';
 import './PagesStyling/ViewPageStyling.css'
 import TicketCard from '../Components/TicketCard';
 import TestHooks from '../Components/TestHooks';
-import datejust from '../Images/Watches/datejust.png'
-import daytona from '../Images/Watches/daytona.png'
-import milgauss from '../Images/Watches/milgauss.png'
-import skydweller from '../Images/Watches/skydweller.png'
+// import datejust from '../Images/Watches/datejust.png'
+// import daytona from '../Images/Watches/daytona.png'
+// import milgauss from '../Images/Watches/milgauss.png'
+// import skydweller from '../Images/Watches/skydweller.png'
 import Chevron from '../Components/Chevron';
 
 
 const ViewPage = () => {
-    //TODO
-
-    // when i click the watch button, onClick={customer.filter(tickets=>tickets.watch_ordered === e.target.value; setSelectedWatch(e.target.value))}
-
-
-    //// join tables of fulfilled && watch_name && watch_ordered
-    // if 'allTab' === selected/true/clicked, run getByWatch.Name fetch
-    // if 'pendingTab' === selected/true/clicked, run getByWatch.Name && getByWatch.fulfilled fetch
-    // if 'fulfilledTab' === selected/true/clicked, run getByWatch.Name && getByWatch.fulfilled fetch
-    //^TODO^
 
     // show tickets only for selectedWatches
     const [selectedWatch, setSelectedWatch] = useState('') // not name, but _id of watch
-
-
 
 
     // tabs
@@ -42,12 +30,14 @@ const ViewPage = () => {
     }
 
     // make sure than this.state.customer is set to tickets filtered by watch before running this fn
+
     const filterTickets = () => {
-        if (currentTab === 0) {
-            customer.filter(ticket => console.log(ticket))
-        }
+        // if (currentTab === 0) {
+        //     customer.filter(ticket => ticket)
+        // }
         // may have to live inside tab, combined with map
         if (currentTab === 1) {
+            // console.log('pending: ' + JSON.stringify(customer.filter(ticket => ticket.fulfilled === false)))
             customer.filter(ticket => ticket.fulfilled === false)
         }
         if (currentTab === 2) {
@@ -67,12 +57,15 @@ const ViewPage = () => {
     const [tCRotation, setTCRotation] = useState('accordion_icon')
 
 
+    const [areTabsVisible, setAreTabsVisible] = useState('none')
+
     // gets tickets from db when 'View Search Results' is clicked
     const getTicketsFromDb = () => {
         setTime(new Date().toLocaleString())
         console.log('getTicketsFromDb firing')
         if (isTCActive === 'active') {
-
+            // make tabs visible
+            setAreTabsVisible('inline')
             // 404 means that is not pulling data from backend api
             fetch('http://localhost:3001/tickets/getTickets')
                 // Response {type: "cors", url: "http://localhost:3001/tickets/getTickets", redirected: false, status: 404, ok: false, …}
@@ -89,6 +82,8 @@ const ViewPage = () => {
     const [watchHeight, setWatchHeight] = useState('0px')
     const [rotation, setRotation] = useState('accordion_icon')
 
+
+
     const getWatchesFromDb = () => {
         console.log('hello')
         if (rotation === 'accordion_icon') {
@@ -99,32 +94,21 @@ const ViewPage = () => {
         }
 
     }
-    // const watches = [
-    //     { name: 'Cosmograph Daytona', image: daytona }, { name: 'Sky Dweller', image: skydweller }, { name: 'Milgauss', image: milgauss }, { name: 'Datejust', image: datejust }];
 
+    const displayTabs = () => {
+        return (<div>
 
-
-    /* last watch is appearing, despite the state set to 0px
-    add accordion_content css to WatchCard???  no effect
-    add useRef???  no effect
-    brute - set css to dissapear items
-     
-    if isActive === '' {dont fire map function}
-     
-     
-    */
-    // useEffect(
-    //     isTCActive === 'active' ? getTicketsFromDb() : console.log('help')
-
-    // )
+            {/* place all of tabs in here */}
+        </div>
+        )
+    }
 
     const toggleTCAccordion = () => {
         getTicketsFromDb()
         setIsTCActive(isTCActive === '' ? 'active' : '')
-        // if (isTCActive === 'active') {
-        // }
         setTicketHeight(isTCActive === 'active' ? '0px' : '1000px')
         setTCRotation(isTCActive === 'active' ? 'accordion_icon' : 'accordion_icon rotate')
+
     }
 
     const toggleAccordion = () => {
@@ -158,7 +142,10 @@ const ViewPage = () => {
             <div className="TicketView">
                 <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View Most Recent Results</Button>
                         Last Updated: {new Date().toLocaleString()}
-                <Tabs selectedIndex={currentTab} onSelect={handleCurrentTab}>
+
+
+                {/* tabs begin */}
+                <Tabs selectedIndex={currentTab} onSelect={handleCurrentTab} style={{ display: `${areTabsVisible}` }}>
                     <TabList>
                         <Tab>All</Tab>
                         <Tab>Pending</Tab>
@@ -167,12 +154,6 @@ const ViewPage = () => {
 
                     <TabPanel>
                         <h2>All Tickets</h2>
-
-                        {/* <Button size="lg" color='info' outline className={`accordion ${isTCActive}`} onClick={toggleTCAccordion}>
-                            <p>View Search Results</p>
-                            <Chevron className={`${tCRotation}`} width={10} fill={"#777"} />
-                        </Button> */}
-
 
 
                         {(isTCActive === 'active') ?
@@ -203,10 +184,60 @@ const ViewPage = () => {
                     </TabPanel>
                     <TabPanel>
                         <h2>Pending Tickets</h2>
+                        {(isTCActive === 'active') ?
+                            customer.filter(ticket => ticket.fulfilled === false).map((item, index) => {
+                                return (
+                                    <div key={index}>
+                                        <TicketCard
+                                            id={item._id}
+                                            // name to left of assigment is what name must be in child
+                                            first_name={item.first_name}
+                                            last_name={item.last_name}
+                                            street={item.street}
+                                            city={item.city}
+                                            state={item.state}
+                                            zip_code={item.zip_code}
+                                            phone_number={item.phone_number}
+                                            email={item.email}
+                                            watch_ordered={item.watch_ordered}
+                                            date_ordered={item.date_ordered}
+                                            fulfilled={item.fulfilled}
+                                            date_fulfilled={item.date_fulfilled}
+                                        />
+                                    </div>)
+                            })
+                            :
+                            <div>No Pending Tickets</div>
+                        }
                         <TestHooks />
                     </TabPanel>
                     <TabPanel>
                         <h2>Fulfilled Tickets</h2>
+                        {(isTCActive === 'active') ?
+                            customer.filter(ticket => ticket.fulfilled === true).map((item, index) => {
+                                return (
+                                    <div key={index}>
+                                        <TicketCard
+                                            id={item._id}
+                                            // name to left of assigment is what name must be in child
+                                            first_name={item.first_name}
+                                            last_name={item.last_name}
+                                            street={item.street}
+                                            city={item.city}
+                                            state={item.state}
+                                            zip_code={item.zip_code}
+                                            phone_number={item.phone_number}
+                                            email={item.email}
+                                            watch_ordered={item.watch_ordered}
+                                            date_ordered={item.date_ordered}
+                                            fulfilled={item.fulfilled}
+                                            date_fulfilled={item.date_fulfilled}
+                                        />
+                                    </div>)
+                            })
+                            :
+                            <div>No Fulfilled Tickets</div>
+                        }
                     </TabPanel>
                 </Tabs>
 
