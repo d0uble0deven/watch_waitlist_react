@@ -6,81 +6,40 @@ import 'react-tabs/style/react-tabs.css';
 import './PagesStyling/ViewPageStyling.css'
 import TicketCard from '../Components/TicketCard';
 import TestHooks from '../Components/TestHooks';
-// import datejust from '../Images/Watches/datejust.png'
-// import daytona from '../Images/Watches/daytona.png'
-// import milgauss from '../Images/Watches/milgauss.png'
-// import skydweller from '../Images/Watches/skydweller.png'
 import Chevron from '../Components/Chevron';
-
-
-
-// when watch is clicked, filter data with watch_ordered
-// setCustomer(result)
-// tabFilter customer
-// TicketModel.watch_ordered needs to be embedded WatchModel._id
 
 const ViewPage = () => {
 
-    // show tickets only for selectedWatches
-    const [selectedWatch, setSelectedWatch] = useState('') // not name, but _id of watch
-
-
     // tabs
     const [currentTab, setCurrentTab] = useState(1)
+    const handleCurrentTab = (index) => setCurrentTab(index)
 
-    const handleCurrentTab = (index) => {
-        console.log('index: ' + index) // shows what was just cliked
-        setCurrentTab(index)
-        console.log('currentTab: ' + currentTab) // shows what was just setState
-        filterTickets()
-    }
 
-    // make sure than this.state.customer is set to tickets filtered by watch before running this fn
 
-    const filterTickets = () => {
-        // if (currentTab === 0) {
-        //     customer.filter(ticket => ticket)
-        // }
-        // may have to live inside tab, combined with map
-        if (currentTab === 1) {
-            // console.log('pending: ' + JSON.stringify(customer.filter(ticket => ticket.fulfilled === false)))
-            customer.filter(ticket => ticket.fulfilled === false)
-        }
-        if (currentTab === 2) {
-            customer.filter(ticket => ticket.fulfilled === true)
-        }
-
-    }
-
-    const [watches, setWatches] = useState([])
+    // gets tickets from db when 'View Search Results' is clicked
     const [time, setTime] = useState('')
-
-    // get ticket data
     const [customer, setCustomer] = useState([])
 
     const [isTCActive, setIsTCActive] = useState('active')
-    const [ticketHeight, setTicketHeight] = useState('0px')
-    const [tCRotation, setTCRotation] = useState('accordion_icon')
-
+    // const [ticketHeight, setTicketHeight] = useState('0px')
+    // const [tCRotation, setTCRotation] = useState('accordion_icon')
 
     const [areTabsVisible, setAreTabsVisible] = useState('none')
 
-    // gets tickets from db when 'View Search Results' is clicked
     const getTicketsFromDb = () => {
         setTime(new Date().toLocaleString())
         console.log('getTicketsFromDb firing')
         if (isTCActive === 'active') {
-            // make tabs visible
             setAreTabsVisible('inline')
-            // 404 means that is not pulling data from backend api
             fetch('http://localhost:3001/tickets/getTickets')
-                // Response {type: "cors", url: "http://localhost:3001/tickets/getTickets", redirected: false, status: 404, ok: false, …}
                 .then(data => data.json())
-                .then(res => setCustomer(res.data))
-                .then(console.log(customer))
+                .then(res => setCustomer(res.data.filter(ticket => ticket.watch_ordered == selectedWatch)))
+                .then(console.table(customer))
         }
 
     }
+
+
 
 
     // collapsible WC component
@@ -88,7 +47,14 @@ const ViewPage = () => {
     const [watchHeight, setWatchHeight] = useState('0px')
     const [rotation, setRotation] = useState('accordion_icon')
 
+    const toggleAccordion = () => {
+        getWatchesFromDb()
+        setIsActive(isActive === '' ? 'active' : '')
+        setWatchHeight(isActive === 'active' ? '0px' : '1000px')
+        setRotation(isActive === 'active' ? 'accordion_icon' : 'accordion_icon rotate')
+    }
 
+    const [watches, setWatches] = useState([]) // displays watches
 
     const getWatchesFromDb = () => {
         console.log('hello')
@@ -98,31 +64,10 @@ const ViewPage = () => {
                 .then(res => setWatches(res.data))
                 .then(console.log(watches))
         }
-
     }
 
-    const displayTabs = () => {
-        return (<div>
+    const [selectedWatch, setSelectedWatch] = useState('') // selects watches
 
-            {/* place all of tabs in here */}
-        </div>
-        )
-    }
-
-    const toggleTCAccordion = () => {
-        getTicketsFromDb()
-        setIsTCActive(isTCActive === '' ? 'active' : '')
-        setTicketHeight(isTCActive === 'active' ? '0px' : '1000px')
-        setTCRotation(isTCActive === 'active' ? 'accordion_icon' : 'accordion_icon rotate')
-
-    }
-
-    const toggleAccordion = () => {
-        getWatchesFromDb()
-        setIsActive(isActive === '' ? 'active' : '')
-        setWatchHeight(isActive === 'active' ? '0px' : '1000px')
-        setRotation(isActive === 'active' ? 'accordion_icon' : 'accordion_icon rotate')
-    }
 
 
     return (
@@ -131,8 +76,6 @@ const ViewPage = () => {
                 <p>view watches</p>
                 <Chevron className={`${rotation}`} width={10} fill={"#777"} />
             </Button>
-
-            {/* <Button outline color='info' size='sm' onClick={getWatchesFromDb}>View Watches</Button> */}
 
             {(isActive === 'active') ?
                 watches.map((item, index) => {
@@ -150,7 +93,7 @@ const ViewPage = () => {
                         Last Updated: {new Date().toLocaleString()}
 
 
-                {/* tabs begin */}
+                {/* ///// tabs begin ///// */}
                 <Tabs selectedIndex={currentTab} onSelect={handleCurrentTab} style={{ display: `${areTabsVisible}` }}>
                     <TabList>
                         <Tab>All</Tab>
