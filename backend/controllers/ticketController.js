@@ -3,10 +3,37 @@ const Ticket = require('../Data/TicketModel')
 module.exports = {
     getTickets,
     addTicket,
-    deleteTicket,
+    // deleteTicket,
+    updatePendingFulfillment,
+    updateFulfilledFulfillment,
     // showTicket,
 }
 
+async function updatePendingFulfillment(req, res) {
+    console.log('updatePendingFulfillment is firing')
+    id = req.body.id
+
+    try {
+
+        await Ticket.update({ _id: req.body.id }, { $set: { fulfilled: false, date_fulfilled: null } })
+    }
+    catch (error) {
+        console.error(error);
+    }
+
+}
+async function updateFulfilledFulfillment(req, res) {
+    console.log('updateFulfilledFulfillment is firing')
+    id = req.body.id
+    // Date.now()
+    try {
+        await Ticket.update({ _id: req.body.id }, { $set: { fulfilled: true, date_fulfilled: Date.now() } })
+    }
+    catch (error) {
+        console.error(error);
+    }
+
+}
 
 function getTickets(req, res) {
     Ticket.find((err, data) => {
@@ -74,11 +101,11 @@ function addTicket(req, res) {
 looks for document with matching id,
 delete document
 */
-function deleteTicket() {
-    console.log('deleteCTRl is working')
-    const { id } = req.body
-    Ticket.findByIdAndRemove(id, (err) => {
-        if (err) return res.send(err)
-        return res.json({ success: true })
-    })
-}
+// function deleteTicket() {
+//     console.log('deleteCTRl is working')
+//     const { id } = req.body
+//     Ticket.findByIdAndRemove(id, (err) => {
+//         if (err) return res.send(err)
+//         return res.json({ success: true })
+//     })
+// }

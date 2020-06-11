@@ -33,8 +33,18 @@ const ViewPage = () => {
             setAreTabsVisible('inline')
             fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
+                .then(res => setCustomer(res.data))
+        }
+
+    }
+    const getTicketsFromDbForSelectedWatch = () => {
+        setTime(new Date().toLocaleString())
+        console.log('getTicketsFromDbForSelectedWatch firing')
+        if (isTCActive === 'active') {
+            setAreTabsVisible('inline')
+            fetch('http://localhost:3001/tickets/getTickets')
+                .then(data => data.json())
                 .then(res => setCustomer(res.data.filter(ticket => ticket.watch_ordered == selectedWatch)))
-                .then(console.table(customer))
         }
 
     }
@@ -57,7 +67,6 @@ const ViewPage = () => {
     const [watches, setWatches] = useState([]) // displays watches
 
     const getWatchesFromDb = () => {
-        console.log('hello')
         if (rotation === 'accordion_icon') {
             fetch('http://localhost:3001/watches/getWatches')
                 .then(data => data.json())
@@ -89,7 +98,10 @@ const ViewPage = () => {
             <br />
             <hr />
             <div className="TicketView">
-                <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View Most Recent Results</Button>
+                Watch Selected: {selectedWatch}
+                <hr />
+                <Button outline color='info' size='sm' onClick={getTicketsFromDb}>View All Tickets</Button>
+                <Button outline color='info' size='sm' onClick={getTicketsFromDbForSelectedWatch}>View Results for Selected Watch</Button>
                         Last Updated: {new Date().toLocaleString()}
 
 
@@ -158,7 +170,6 @@ const ViewPage = () => {
                             :
                             <div>No Pending Tickets</div>
                         }
-                        <TestHooks />
                     </TabPanel>
                     <TabPanel>
                         <h2>Fulfilled Tickets</h2>
