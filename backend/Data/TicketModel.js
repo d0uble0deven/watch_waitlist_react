@@ -21,7 +21,7 @@ const TicketSchema = new Schema(
 
         date_ordered: { type: Date },
         watch_ordered: { type: String }, // enum?
-        date_fulfilled: { type: Date },
+        date_fulfilled: { type: Date || String }, // how to have multiple types?
         fulfilled: { type: Boolean },
         // required: true
     },

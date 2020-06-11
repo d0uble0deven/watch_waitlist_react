@@ -37,6 +37,10 @@ const ViewPage = () => {
         }
 
     }
+
+    useEffect(() => getTicketsFromDb())
+
+
     const getTicketsFromDbForSelectedWatch = () => {
         setTime(new Date().toLocaleString())
         console.log('getTicketsFromDbForSelectedWatch firing')
@@ -62,6 +66,7 @@ const ViewPage = () => {
         setIsActive(isActive === '' ? 'active' : '')
         setWatchHeight(isActive === 'active' ? '0px' : '1000px')
         setRotation(isActive === 'active' ? 'accordion_icon' : 'accordion_icon rotate')
+
     }
 
     const [watches, setWatches] = useState([]) // displays watches

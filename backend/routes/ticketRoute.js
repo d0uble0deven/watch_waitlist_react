@@ -8,6 +8,7 @@ router
     // .delete('/deleteTicket', ticketCtrl.deleteTicket)
     .put('/updatePendingFulfillment', ticketCtrl.updatePendingFulfillment)
     .put('/updateFulfilledFulfillment', ticketCtrl.updateFulfilledFulfillment)
+    .put('/updateFulfillment', ticketCtrl.updateFulfillment)
 // .get('/show/:d', ticketCtrl.showTicket)
 
 module.exports = router;

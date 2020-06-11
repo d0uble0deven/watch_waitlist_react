@@ -4,13 +4,39 @@ module.exports = {
     getTickets,
     addTicket,
     // deleteTicket,
+    updateFulfillment,
     updatePendingFulfillment,
     updateFulfilledFulfillment,
     // showTicket,
 }
 
+async function updateFulfillment(req, res) {
+    id = req.body.statusUpdate.id
+    status = req.body.statusUpdate.status
+    let date
+    // or if date !=date.now() than remove date
+    status === true ? date = Date.now() : date // worked!!!!!!!
+    console.log('id: ' + id)
+    console.log('status: ' + status)
+    console.log('date: ' + date)
+    // null is not working, gregory is not working
+    // db is taking too long to GET
+
+    // if status if true than try catch this, if false try catch this
+    try {
+        await Ticket.update({ _id: id }, { $set: { fulfilled: status, date_fulfilled: date } })
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
+
+
+
 async function updatePendingFulfillment(req, res) {
     console.log('updatePendingFulfillment is firing')
+    console.log('req. ' + Object.keys(req.params))
     id = req.body.id
 
     try {
@@ -74,7 +100,7 @@ function addTicket(req, res) {
     // what does it have to align with?
     // what exactly is req.body doing? 
     // is this function recieving a req?
-    const { inputFirstName, inputLastName, inputStreet, inputCity, inputState, inputZipCode, inputNumber, inputEmail, inputDateOrdered, inputWatchOrdered, inputDateFulfilled, inputFulfilled } = req.body.input
+    const { inputFirstName, inputLastName, inputStreet, inputCity, inputState, inputZipCode, inputNumber, inputEmail, inputDateOrdered, inputWatchOrdered } = req.body.input
     console.log('inputFirstName: ' + inputFirstName)
 
     ticket.first_name = inputFirstName
@@ -87,8 +113,7 @@ function addTicket(req, res) {
     ticket.email = inputEmail
     ticket.date_ordered = inputDateOrdered
     ticket.watch_ordered = inputWatchOrdered
-    ticket.date_fulfilled = inputDateFulfilled
-    ticket.fulfilled = inputFulfilled
+    ticket.fulfilled = false
 
     ticket.save(err => {
         if (err) return res.json({ success: false, error: err })
