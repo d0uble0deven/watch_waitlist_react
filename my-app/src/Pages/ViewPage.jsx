@@ -9,7 +9,6 @@ import TestHooks from '../Components/TestHooks';
 import Chevron from '../Components/Chevron';
 
 const ViewPage = () => {
-
     // tabs
     const [currentTab, setCurrentTab] = useState(1)
     const handleCurrentTab = (index) => setCurrentTab(index)
@@ -138,9 +137,9 @@ const ViewPage = () => {
                                             phone_number={item.phone_number}
                                             email={item.email}
                                             watch_ordered={item.watch_ordered}
-                                            date_ordered={JSON.stringify(item.date_ordered)}
+                                            date_ordered={item.date_ordered}
                                             fulfilled={JSON.stringify(item.fulfilled)}
-                                            date_fulfilled={JSON.stringify(item.date_fulfilled)}
+                                            date_fulfilled={item.date_fulfilled}
 
                                         />
                                     </div>)

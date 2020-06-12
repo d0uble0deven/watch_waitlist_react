@@ -20,13 +20,6 @@ async function updateFulfillment(req, res) {
     console.log('date: ' + date)
     try {
         await Ticket.update({ _id: id }, { $set: { fulfilled: status, date_fulfilled: date } })
-        // await Ticket.find((err, data) => {
-        //     console.log('udpateTickets is firing!!!!')
-        //     console.log(data)
-        //     if (err) return res.json({ success: false, error: err });
-        //     return res.json({ success: true, data: data })
-        // })
-
     }
     catch (error) {
         console.error(error)
@@ -62,8 +55,11 @@ async function updateFulfillment(req, res) {
 
 function getTickets(req, res) {
     Ticket.find((err, data) => {
+        console.log('data: ' + data + ' :data')
+        let sortedData = data.sort((a, b) => a.date_ordered - b.date_ordered)
+        console.log('sortedData: ' + sortedData + ' :sortedData')
         if (err) return res.json({ success: false, error: err });
-        return res.json({ success: true, data: data })
+        return res.json({ success: true, data: sortedData })
     })
 }
 

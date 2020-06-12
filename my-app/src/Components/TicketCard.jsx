@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Card, CardBody, CardTitle, Button, Input } from 'reactstrap';
+import './ComponentStyling/TicketCardStyling.css'
 import axios from 'axios'
 
 
@@ -9,6 +10,7 @@ console.log(window.React1 === window.React2);
 
 const TicketCard = (props) => {
 
+
     const handleFulfillmentUpdate = (event) => {
         console.log('handleFulfillmentUpdate is firing')
         event.persist()
@@ -17,7 +19,6 @@ const TicketCard = (props) => {
         axios.put('http://localhost:3001/tickets/updateFulfillment', {
             statusUpdate: statusUpdate
         })
-            .then(() => props.getTicketsFromDb())
 
     }
 
@@ -26,7 +27,7 @@ const TicketCard = (props) => {
     return (
         <div>
 
-            <Card inverse key={props.id} >
+            <Card id="TicketCard" inverse key={props.id} >
 
                 <CardTitle>id: {props.id} </CardTitle>
                 <CardBody >

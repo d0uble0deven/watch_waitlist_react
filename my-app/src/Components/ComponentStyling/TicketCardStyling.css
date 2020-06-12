@@ -1,0 +1,6 @@
+#TicketCard {
+    list-style-type: none;
+    max-width: 25em;
+    max-height: 25em;
+    background-color: red;
+}
