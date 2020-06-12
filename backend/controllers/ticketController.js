@@ -5,26 +5,28 @@ module.exports = {
     addTicket,
     // deleteTicket,
     updateFulfillment,
-    updatePendingFulfillment,
-    updateFulfilledFulfillment,
+    // updatePendingFulfillment,
+    // updateFulfilledFulfillment,
     // showTicket,
 }
 
 async function updateFulfillment(req, res) {
     id = req.body.statusUpdate.id
     status = req.body.statusUpdate.status
-    let date
-    // or if date !=date.now() than remove date
-    status === true ? date = Date.now() : date // worked!!!!!!!
+    let date = Date.now()
     console.log('id: ' + id)
     console.log('status: ' + status)
+    console.log('typeof date: ' + typeof (date))
     console.log('date: ' + date)
-    // null is not working, gregory is not working
-    // db is taking too long to GET
-
-    // if status if true than try catch this, if false try catch this
     try {
         await Ticket.update({ _id: id }, { $set: { fulfilled: status, date_fulfilled: date } })
+        // await Ticket.find((err, data) => {
+        //     console.log('udpateTickets is firing!!!!')
+        //     console.log(data)
+        //     if (err) return res.json({ success: false, error: err });
+        //     return res.json({ success: true, data: data })
+        // })
+
     }
     catch (error) {
         console.error(error)
@@ -34,32 +36,29 @@ async function updateFulfillment(req, res) {
 
 
 
-async function updatePendingFulfillment(req, res) {
-    console.log('updatePendingFulfillment is firing')
-    console.log('req. ' + Object.keys(req.params))
-    id = req.body.id
+// async function updatePendingFulfillment(req, res) {
+//     console.log('updatePendingFulfillment is firing')
+//     console.log('req. ' + Object.keys(req.params))
+//     id = req.body.id
+//     try {
+//         await Ticket.update({ _id: req.body.id }, { $set: { fulfilled: false, date_fulfilled: null } })
+//     }
+//     catch (error) {
+//         console.error(error);
+//     }
 
-    try {
-
-        await Ticket.update({ _id: req.body.id }, { $set: { fulfilled: false, date_fulfilled: null } })
-    }
-    catch (error) {
-        console.error(error);
-    }
-
-}
-async function updateFulfilledFulfillment(req, res) {
-    console.log('updateFulfilledFulfillment is firing')
-    id = req.body.id
-    // Date.now()
-    try {
-        await Ticket.update({ _id: req.body.id }, { $set: { fulfilled: true, date_fulfilled: Date.now() } })
-    }
-    catch (error) {
-        console.error(error);
-    }
-
-}
+// }
+// async function updateFulfilledFulfillment(req, res) {
+//     console.log('updateFulfilledFulfillment is firing')
+//     id = req.body.id
+//     // Date.now()
+//     try {
+//         await Ticket.update({ _id: req.body.id }, { $set: { fulfilled: true, date_fulfilled: Date.now() } })
+//     }
+//     catch (error) {
+//         console.error(error);
+//     }
+// }
 
 function getTickets(req, res) {
     Ticket.find((err, data) => {
@@ -113,6 +112,7 @@ function addTicket(req, res) {
     ticket.email = inputEmail
     ticket.date_ordered = inputDateOrdered
     ticket.watch_ordered = inputWatchOrdered
+    ticket.date_fulfilled = ''
     ticket.fulfilled = false
 
     ticket.save(err => {

@@ -38,7 +38,7 @@ const ViewPage = () => {
 
     }
 
-    useEffect(() => getTicketsFromDb())
+    useEffect(() => getTicketsFromDb(), [currentTab])
 
 
     const getTicketsFromDbForSelectedWatch = () => {
@@ -141,6 +141,7 @@ const ViewPage = () => {
                                             date_ordered={JSON.stringify(item.date_ordered)}
                                             fulfilled={JSON.stringify(item.fulfilled)}
                                             date_fulfilled={JSON.stringify(item.date_fulfilled)}
+
                                         />
                                     </div>)
                             })
@@ -169,6 +170,7 @@ const ViewPage = () => {
                                             date_ordered={item.date_ordered}
                                             fulfilled={item.fulfilled}
                                             date_fulfilled={item.date_fulfilled}
+
                                         />
                                     </div>)
                             })
@@ -197,6 +199,7 @@ const ViewPage = () => {
                                             date_ordered={item.date_ordered}
                                             fulfilled={item.fulfilled}
                                             date_fulfilled={item.date_fulfilled}
+
                                         />
                                     </div>)
                             })
