@@ -1,12 +1,54 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Card, CardBody, CardTitle, Button, Input } from 'reactstrap';
-import './ComponentStyling/TicketCardStyling.css'
+import styled from 'styled-components'
 import axios from 'axios'
 
+// text shadow, hover
 
-require('react-dom');
-window.React2 = require('react');
-console.log(window.React1 === window.React2);
+const TCard = styled.div`
+    /* list-style-type: none; */
+    max-width: 29em;
+    max-height: 29em;
+    background-color: rgba(255, 255, 255, .5);  
+    border-radius: 1%;
+    border: rgba(173, 135, 2, .9) solid 1px; /* dark goldenrod */
+    margin: 1em;
+    padding-left: 1em;
+    text-shadow: 1px 1px 1px lightgrey;
+    box-shadow:  5px 1px 1px rgba(4, 4, 4, .9);
+
+
+    &:hover{
+    box-shadow: inset 2px 2px 2px rgba(4, 4, 4, .9);
+    background-color: rgb(255, 255, 255);  
+    }
+
+
+    `
+const TInfo = styled.li`
+    list-style-type: none;
+    color: rgba(173, 135, 2, .9); /* dark goldenrod */
+`
+
+const TCardTitle = styled.h1`
+    color: rgba(173, 135, 2, .9); /* dark goldenrod */
+    padding-bottom: 0;
+    margin-bottom: 0;
+`
+
+const TButton = styled.button`
+    color: rgba(33, 118, 255, .5); /* Blue Crayola */
+    border-radius: 10%;
+    border: rgba(33, 118, 255, .5) solid 1px;
+    margin-top: 1em;
+    margin-right: 1em;
+    background-color:white;
+
+    &:hover {
+    background-color: rgba(33, 118, 255, .9); 
+    color: white
+    }
+`
 
 const TicketCard = (props) => {
 
@@ -25,33 +67,28 @@ const TicketCard = (props) => {
 
 
     return (
-        <div>
+        <TCard
+            id="TicketCard" inverse key={props.id} >
 
-            <Card id="TicketCard" inverse key={props.id} >
+            <TCardTitle>{props.first_name} {props.last_name}</TCardTitle>
+            <CardBody >
+                <TInfo>Name: {props.first_name} {props.last_name}</TInfo>
+                <TInfo>Street: {props.street}</TInfo>
+                <TInfo>City: {props.city}</TInfo>
+                <TInfo>State: {props.state}</TInfo>
+                <TInfo>Zip Code: {props.zip_code}</TInfo>
+                <TInfo>Phone Number: {props.phone_number}</TInfo>
+                <TInfo>Email: {props.email}</TInfo>
+                <TInfo>Watch Ordered: {props.watch_ordered}</TInfo>
+                <TInfo>Date of Order: {new Date(props.date_ordered).toDateString()}</TInfo>
+                <TInfo>Fulfilled: {props.fulfilled}</TInfo>
+                <TInfo>Date Fulfilled: {(props.fulfilled === false) ? '' : new Date(props.date_fulfilled).toDateString()}</TInfo>
 
-                <CardTitle>id: {props.id} </CardTitle>
-                <CardBody >
-                    <li>Name: {props.first_name} {props.last_name}</li>
-                    <li>Street: {props.street}</li>
-                    <li>City: {props.city}</li>
-                    <li>State: {props.state}</li>
-                    <li>Zip Code: {props.zip_code}</li>
-                    <li>Phone Number: {props.phone_number}</li>
-                    <li>Email: {props.email}</li>
-                    <li>Watch Ordered: {props.watch_ordered}</li>
-                    <li>Date of Order: {new Date(props.date_ordered).toDateString()}</li>
-                    <li>Fulfilled: {props.fulfilled}</li>
-                    <li>Date Fulfilled: {(props.fulfilled === false) ? '' : new Date(props.date_fulfilled).toDateString()}</li>
+                <TButton outline color="primary" id={props.id} value={true} onClick={handleFulfillmentUpdate}>Fulfilled</TButton>
+                <TButton outline color="secondary" id={props.id} value={false} onClick={handleFulfillmentUpdate}>Pending</TButton>
 
-                    <Button outline color="primary" id={props.id} value={true} onClick={handleFulfillmentUpdate}>Fulfilled</Button>
-                    <Button outline color="secondary" id={props.id} value={false} onClick={handleFulfillmentUpdate}>Pending</Button>
-
-                </CardBody>
-            </Card>
-
-
-
-        </div>
+            </CardBody>
+        </TCard>
     )
 
 }
