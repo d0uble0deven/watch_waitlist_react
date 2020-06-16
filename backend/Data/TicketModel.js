@@ -19,6 +19,7 @@ const TicketSchema = new Schema(
         email: { type: String },
         // // required: true
 
+        employee_responsible: { type: String },
         date_ordered: { type: Date },
         watch_ordered: { type: String }, // enum?
         date_fulfilled: { type: Date }, // how to have multiple types?

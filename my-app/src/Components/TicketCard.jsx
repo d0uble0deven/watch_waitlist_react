@@ -28,6 +28,7 @@ const TCard = styled.div`
 const TInfo = styled.li`
     list-style-type: none;
     color: rgba(173, 135, 2, .9); /* dark goldenrod */
+    margin-bottom: 5px; 
 `
 
 const TCardTitle = styled.h1`
@@ -70,15 +71,16 @@ const TicketCard = (props) => {
         <TCard
             id="TicketCard" inverse key={props.id} >
 
-            <TCardTitle>{props.first_name} {props.last_name}</TCardTitle>
+            {/* <TCardTitle>{props.first_name} {props.last_name}</TCardTitle> */}
             <CardBody >
                 <TInfo>Name: {props.first_name} {props.last_name}</TInfo>
-                <TInfo>Street: {props.street}</TInfo>
-                <TInfo>City: {props.city}</TInfo>
-                <TInfo>State: {props.state}</TInfo>
-                <TInfo>Zip Code: {props.zip_code}</TInfo>
-                <TInfo>Phone Number: {props.phone_number}</TInfo>
-                <TInfo>Email: {props.email}</TInfo>
+                <TInfo>Address: {props.street}
+                    <br />
+                    {props.city}, {props.state} {props.zip_code} </TInfo>
+                <TInfo>Contact Info: {props.phone_number} | {props.email}</TInfo>
+                {/* <TInfo>Email: {props.email}</TInfo> */}
+                <hr />
+                <TInfo>Employee Responsible: {props.employee_responsible}</TInfo>
                 <TInfo>Watch Ordered: {props.watch_ordered}</TInfo>
                 <TInfo>Date of Order: {new Date(props.date_ordered).toDateString()}</TInfo>
                 <TInfo>Fulfilled: {props.fulfilled}</TInfo>

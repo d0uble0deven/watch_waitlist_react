@@ -16,6 +16,7 @@ export default function NameForm(props) {
     const { value: zipCode, bind: bindZipCode, reset: resetZipCode } = useInput('');
     const { value: dateOrdered, bind: bindDateOrdered, reset: resetDateOrdered } = useInput('');
     const { value: watchOrdered, bind: bindWatchOrdered, reset: resetWatchOrdered } = useInput('');
+    const { value: employeeResponsible, bind: bindEmployeeResponsible, reset: resetEmployeeResponsible } = useInput('');
 
 
 
@@ -30,7 +31,7 @@ export default function NameForm(props) {
 
     const handleSubmit = () => {
         console.log('handleSubmit is working!')
-        alert(`Submitting ${firstName} ${lastName} ${phoneNumber} ${email} ${street} ${city} ${state} ${zipCode} ${dateOrdered} ${watchOrdered}`);
+        alert(`Submitting ${firstName} ${lastName} ${phoneNumber} ${email} ${street} ${city} ${state} ${zipCode} ${dateOrdered} ${watchOrdered} ${employeeResponsible}`);
         resetFirstName();
         resetLastName();
         resetNumber();
@@ -41,17 +42,18 @@ export default function NameForm(props) {
         resetZipCode();
         resetDateOrdered();
         resetWatchOrdered();
+        resetEmployeeResponsible();
     };
 
-    const validate = (event, inputFirstName = bindFirstName.value, inputLastName = bindLastName.value, inputNumber = bindNumber.value, inputEmail = bindEmail.value, inputStreet = bindStreet.value, inputCity = bindCity.value, inputState = bindState.value, inputZipCode = bindZipCode.value, inputDateOrdered = bindDateOrdered.value, inputWatchOrdered = bindWatchOrdered.value) => {
+    const validate = (event, inputFirstName = bindFirstName.value, inputLastName = bindLastName.value, inputNumber = bindNumber.value, inputEmail = bindEmail.value, inputStreet = bindStreet.value, inputCity = bindCity.value, inputState = bindState.value, inputZipCode = bindZipCode.value, inputDateOrdered = bindDateOrdered.value, inputWatchOrdered = bindWatchOrdered.value, inputEmployeeResponsible = bindEmployeeResponsible.value) => {
         event.preventDefault()
         const names = /^\D{2,}$/;
         const number = /^\d{3}-\d{3}-\d{4}$/;
         const emails = /[\w-]+@([\w-]+\.)+[\w-]+/;
         if (names.test(inputFirstName) && names.test(inputLastName) && emails.test(inputEmail)) {
             if (number.test(inputNumber)) {
-                const inputs = { inputFirstName, inputLastName, inputNumber, inputEmail, inputStreet, inputCity, inputState, inputZipCode, inputDateOrdered, inputWatchOrdered }
-                console.log(inputs)
+                const inputs = { inputFirstName, inputLastName, inputNumber, inputEmail, inputStreet, inputCity, inputState, inputZipCode, inputDateOrdered, inputWatchOrdered, inputEmployeeResponsible }
+                console.log(inputs) // works!
                 addTicketToDb(inputs)
             } else {
                 alert('Please follow the 000-000-0000 format.');
@@ -91,7 +93,8 @@ export default function NameForm(props) {
                 <label>Zip Code:<input type="text" placeholder="75034" {...bindZipCode} /></label>
                 <br />
                 <br />
-                <select value={'select a watch'} {...bindWatchOrdered}>
+                Select a watch: <select value={'select a watch'} {...bindWatchOrdered}>
+                    <option value=" "> </option>
                     <option value="Sky Dweller">Sky Dweller</option>
                     <option value="Daytona">Daytona</option>
                     <option value="Milgauss">Milgauss</option>
@@ -104,6 +107,19 @@ export default function NameForm(props) {
                 <br />
                 <br />
                 <label>Date Ordered:<input type="date" placeholder="09/21/1994" {...bindDateOrdered} /></label>
+                <br />
+                <br />
+                Which employee is responsible? <select value={'which employee is responsible?'} {...bindEmployeeResponsible}>
+                    <option value=" "> </option>
+                    <option value="John Smith">John Smith</option>
+                    <option value="Joana Jones">Joana Jones</option>
+                    <option value="Mike Johnson">Mike Johnson</option>
+                    <option value="Dave Perry">Dave Perry</option>
+                    <option value="Doug Mortensen">Doug Mortensen</option>
+                    <option value="Selina Perez">Selina Perez</option>
+                    <option value="Oscar Scott">Oscar Scott</option>
+                    <option value="Bella Sorensen">Bella Sorensen</option>
+                </select>
                 <br />
                 <br />
                 <input type="submit" value="Submit" />
