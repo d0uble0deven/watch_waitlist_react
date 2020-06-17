@@ -6,13 +6,12 @@ import axios from 'axios'
 // text shadow, hover
 
 const TCard = styled.div`
-    margin-left: 2em;    
     max-width: 29em;
     max-height: 29em;
     background-color: rgba(255, 255, 255, .5);  
-    border-radius: 1%;
+    border-radius: 5px;
     border: rgba(173, 135, 2, .9) solid 1px; /* dark goldenrod */
-    margin: 1em;
+    margin-bottom: 2em;
     padding-left: 1em;
     text-shadow: 1px 1px 1px lightgrey;
     box-shadow:  5px 5px 1px rgba(4, 4, 4, .2);
@@ -28,18 +27,11 @@ const TCard = styled.div`
 const TInfo = styled.li`
     list-style-type: none;
     color: rgba(173, 135, 2, .9); /* dark goldenrod */
-    margin-bottom: 5px; 
-`
-
-const TCardTitle = styled.h1`
-    color: rgba(173, 135, 2, .9); /* dark goldenrod */
-    padding-bottom: 0;
-    margin-bottom: 0;
 `
 
 const TButton = styled.button`
     color: rgba(33, 118, 255, .5); /* Blue Crayola */
-    border-radius: 10%;
+    border-radius: 10px;
     border: rgba(33, 118, 255, .5) solid 1px;
     margin-top: 1em;
     margin-right: 1em;
@@ -71,14 +63,12 @@ const TicketCard = (props) => {
         <TCard
             id="TicketCard" inverse key={props.id} >
 
-            {/* <TCardTitle>{props.first_name} {props.last_name}</TCardTitle> */}
             <CardBody >
                 <TInfo>Name: {props.first_name} {props.last_name}</TInfo>
                 <TInfo>Address: {props.street}
                     <br />
                     {props.city}, {props.state} {props.zip_code} </TInfo>
                 <TInfo>Contact Info: {props.phone_number} | {props.email}</TInfo>
-                {/* <TInfo>Email: {props.email}</TInfo> */}
                 <hr />
                 <TInfo>Employee Responsible: {props.employee_responsible}</TInfo>
                 <TInfo>Watch Ordered: {props.watch_ordered}</TInfo>

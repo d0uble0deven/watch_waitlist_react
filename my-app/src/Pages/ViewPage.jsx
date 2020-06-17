@@ -85,37 +85,57 @@ const ViewPage = () => {
 
     const Container = styled.div`
         display: grid;
-        margin: 2em;
-        grid-template-columns: repeat(6, 14em);
+        grid-template-columns: repeat(5, 14em);
         grid-template-rows: auto
+
+    `
+
+    const VPButton = styled.button`
+        text-shadow: 1px 1px 1px rgba(255,255,255,.9);
+        background-color: rgba(173, 135, 2, .1);
+        border: black 1px solid;
+        border-radius: 7px;
+        font-weight: 100px;
+
+        &:hover{
+            box-shadow: inset 2px 2px 1px rgba(4, 4, 4, .9);
+
+        }
 
     `
 
 
     return (
         <div>
-            <Button outline color='info' size='lg' onClick={getTicketsFromDb}>
-                View Tickets For All Watches</Button>
-            <hr />
-            <Button size="lg" outline color='info' className={`accordion ${isActive}`} onClick={toggleAccordion}>
-                <p>view watches</p>
+            <VPButton onClick={getTicketsFromDb}>
+                Select All</VPButton>
+            <br />
+            <br />
+            <VPButton className={`accordion ${isActive}`} onClick={toggleAccordion}>
+                <p>Select Watch</p>
                 <Chevron className={`${rotation}`} width={10} fill={"#777"} />
-            </Button>
+            </VPButton>
             <Container>
                 {(isActive === 'active') ?
                     watches.map((item, index) => {
-                        return (<div style={{ maxHeight: `${watchHeight}` }} key={index}>
-                            <WatchCard name={item.name} image={item.image} selectedWatch={selectedWatch} setSelectedWatch={setSelectedWatch} id={item._id} />
-                        </div>)
+                        return (
+                            <div>
+
+                                <div style={{ maxHeight: `${watchHeight}` }} key={index}>
+                                    <WatchCard name={item.name} image={item.image} selectedWatch={selectedWatch} setSelectedWatch={setSelectedWatch} id={item._id} />
+                                </div>
+
+                            </div>)
                     })
                     :
-                    <div></div>
+                    <div>
+                    </div>
                 }
             </Container>
             <br />
             <hr />
             <div className="TicketView">
-                <Button outline color='info' size='lg' onClick={getTicketsFromDbForSelectedWatch}>  {selectedWatch ? 'View Results For ' + selectedWatch : 'Please Select Watch Above'}</Button>
+                <VPButton onClick={getTicketsFromDbForSelectedWatch}>  {selectedWatch ? 'View Results For ' + selectedWatch : 'Click here once you have selected a watch'}</VPButton>
                 <hr />
 
 

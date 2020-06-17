@@ -8,13 +8,13 @@ const WatchCard = (props) => {
 
 
     const WButton = styled.button`
-        height: 13em;
-        width: 10em;
+        height: 14em;
+        width: 12em;
         box-shadow:  5px 5px 1px rgba(4, 4, 4, .9);
         border: rgba(26, 119, 76) 1px solid; /* rolex green */
-        border-radius: 2%;
+        border-radius: 5px;
         background-color: rgb(255, 255, 255);  
-        margin: 2em;
+        margin: 2em 0;
 
 
         
@@ -29,9 +29,10 @@ const WatchCard = (props) => {
         `
 
     const WImg = styled.img`
-        height: 9em;
-        width: 9em;
-        border-radius: 2%;
+        height: 8em;
+        width: 8em;
+        border-radius: 2px;
+        
     
         `
 
@@ -52,6 +53,7 @@ const WatchCard = (props) => {
 
 
     return (
+
         <WButton color='success' onClick={handleClick} id={props.name} type="submit" >
             <WImg src={props.image} alt={props.name} id={props.name} />
 

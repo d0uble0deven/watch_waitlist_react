@@ -13,44 +13,42 @@ import styled from 'styled-components'
 const NavBar = () => {
 
     const NavPlace = styled.span`
-        /* color: rgba(4, 4, 4, .9); */
         border: rgba(173, 135, 2, .1) solid 2px;
-        border-radius: 5%;
+        border-radius: 5px;
         background-color: rgba(173, 135, 2, .1);
-        font-size: 30px;
+        font-size: 24px;
         justify-self: stretch; 
-        padding: .2em; 
-        box-shadow:  5px 5px 1px rgba(4, 4, 4, .1);
+        box-shadow:  2px 2px 1px rgba(4, 4, 4, .1);
         place-self:center;
         text-shadow: 2px 2px 2px white;
 
         
-        
         &:hover{
-            background-color: rgba(33, 118, 255, .4);
+            /* background-color: rgba(33, 118, 255, .4); */
             border: rgba(33, 118, 255, .1) solid 1px;            
             text-shadow: 2px 2px 2px white;
+            box-shadow: inset 3px 3px 2px rgba(4, 4, 4, .9);
+
 
         }
     `
 
     const NavContainer = styled.div`
         display: grid;
-        grid-template-rows: repeat(3, 70px);
+        grid-template-rows: repeat(3, 60px);
         height: 3em;
         margin-bottom: 12em;
         padding-top: 1em;
-        /* justify-content: start;  */
         
     `
     const Title = styled.h1`
-        border: black solid 3px;
-        place-self: center;
-        box-shadow:  5px 5px 1px rgba(4, 4, 4, .1);
+        font-size: 50px;
+        place-self: center;        /* box-shadow: 2px 2px 1px rgba(4, 4, 4, .1); */
         text-shadow: 2px 2px 2px lightgrey;
-        color: rgba(26, 119, 76);
-        border: rgba(4, 4, 4) solid 2px;
+        color: rgba(4, 4, 4, .6);
         padding: 2px;
+        font-family: 'Varela Round', sans-serif;
+        font-family: 'Roboto Slab', serif;
 
 
     `
