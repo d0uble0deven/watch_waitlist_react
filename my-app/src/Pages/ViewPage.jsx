@@ -6,6 +6,8 @@ import 'react-tabs/style/react-tabs.css';
 import './PagesStyling/ViewPageStyling.css'
 import TicketCard from '../Components/TicketCard';
 import Chevron from '../Components/Chevron';
+import styled from 'styled-components'
+
 
 const ViewPage = () => {
     // tabs
@@ -81,6 +83,14 @@ const ViewPage = () => {
     const [selectedWatch, setSelectedWatch] = useState('') // selects watches
 
 
+    const Container = styled.div`
+        display: grid;
+        margin: 2em;
+        grid-template-columns: repeat(5, 15em);
+        grid-template-rows: auto
+
+    `
+
 
     return (
         <div>
@@ -91,16 +101,17 @@ const ViewPage = () => {
                 <p>view watches</p>
                 <Chevron className={`${rotation}`} width={10} fill={"#777"} />
             </Button>
-
-            {(isActive === 'active') ?
-                watches.map((item, index) => {
-                    return (<div style={{ maxHeight: `${watchHeight}` }} key={index}>
-                        <WatchCard name={item.name} image={item.image} selectedWatch={selectedWatch} setSelectedWatch={setSelectedWatch} id={item._id} />
-                    </div>)
-                })
-                :
-                <div></div>
-            }
+            <Container>
+                {(isActive === 'active') ?
+                    watches.map((item, index) => {
+                        return (<div style={{ maxHeight: `${watchHeight}` }} key={index}>
+                            <WatchCard name={item.name} image={item.image} selectedWatch={selectedWatch} setSelectedWatch={setSelectedWatch} id={item._id} />
+                        </div>)
+                    })
+                    :
+                    <div></div>
+                }
+            </Container>
             <br />
             <hr />
             <div className="TicketView">

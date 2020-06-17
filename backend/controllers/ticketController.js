@@ -55,9 +55,9 @@ async function updateFulfillment(req, res) {
 
 function getTickets(req, res) {
     Ticket.find((err, data) => {
-        console.log('data: ' + data + ' :data')
+        // console.log('data: ' + data + ' :data')
         let sortedData = data.sort((a, b) => a.date_ordered - b.date_ordered)
-        console.log('sortedData: ' + sortedData + ' :sortedData')
+        // console.log('sortedData: ' + sortedData + ' :sortedData')
         if (err) return res.json({ success: false, error: err });
         return res.json({ success: true, data: sortedData })
     })

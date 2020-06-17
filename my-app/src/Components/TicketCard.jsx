@@ -6,7 +6,7 @@ import axios from 'axios'
 // text shadow, hover
 
 const TCard = styled.div`
-    /* list-style-type: none; */
+    margin-left: 2em;    
     max-width: 29em;
     max-height: 29em;
     background-color: rgba(255, 255, 255, .5);  
