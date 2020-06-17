@@ -11,7 +11,7 @@ const WatchCard = (props) => {
         height: 13em;
         width: 10em;
         box-shadow:  5px 5px 1px rgba(4, 4, 4, .9);
-        border: rgba(26, 119, 76) 1px solid;
+        border: rgba(26, 119, 76) 1px solid; /* rolex green */
         border-radius: 2%;
         background-color: rgb(255, 255, 255);  
         margin: 2em;
