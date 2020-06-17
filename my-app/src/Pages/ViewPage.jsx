@@ -86,7 +86,7 @@ const ViewPage = () => {
     const Container = styled.div`
         display: grid;
         margin: 2em;
-        grid-template-columns: repeat(5, 15em);
+        grid-template-columns: repeat(6, 14em);
         grid-template-rows: auto
 
     `

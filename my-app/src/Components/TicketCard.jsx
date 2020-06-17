@@ -15,7 +15,7 @@ const TCard = styled.div`
     margin: 1em;
     padding-left: 1em;
     text-shadow: 1px 1px 1px lightgrey;
-    box-shadow:  5px 1px 1px rgba(4, 4, 4, .9);
+    box-shadow:  5px 5px 1px rgba(4, 4, 4, .2);
 
 
     &:hover{

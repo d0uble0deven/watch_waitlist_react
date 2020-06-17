@@ -10,7 +10,7 @@ const WatchCard = (props) => {
     const WButton = styled.button`
         height: 13em;
         width: 10em;
-        box-shadow:  5px 1px 1px rgba(4, 4, 4, .9);
+        box-shadow:  5px 5px 1px rgba(4, 4, 4, .9);
         border: rgba(26, 119, 76) 1px solid;
         border-radius: 2%;
         background-color: rgb(255, 255, 255);  

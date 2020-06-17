@@ -103,6 +103,7 @@ export default function NameForm(props) {
                     <option value="Cellini">Cellini</option>
                     <option value="Oyster Perpetual">Oyster Perpetual</option>
                     <option value="Sea Dweller">Sea Dweller</option>
+                    <option value="Submariner">Submariner</option>
                 </select>
                 <br />
                 <br />
