@@ -9,6 +9,9 @@ import Chevron from '../Components/Chevron';
 import styled from 'styled-components'
 
 
+// TODO: convert tabs in to radio buttons to filter contents, tabs currently get tickets for all watches
+// TODO: get req.body to pick up idToDelete
+
 const ViewPage = () => {
     // tabs
     const [currentTab, setCurrentTab] = useState(1)
@@ -17,18 +20,14 @@ const ViewPage = () => {
 
 
     // gets tickets from db when 'View Search Results' is clicked
-    const [time, setTime] = useState('')
     const [customer, setCustomer] = useState([])
 
     const [isTCActive, setIsTCActive] = useState('active')
-    // const [ticketHeight, setTicketHeight] = useState('0px')
-    // const [tCRotation, setTCRotation] = useState('accordion_icon')
+
 
     const [areTabsVisible, setAreTabsVisible] = useState('none')
 
     const getTicketsFromDb = () => {
-        setTime(new Date().toLocaleString())
-        console.log('getTicketsFromDb firing')
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
             fetch('http://localhost:3001/tickets/getTickets')
@@ -39,11 +38,10 @@ const ViewPage = () => {
     }
 
     useEffect(() => getTicketsFromDbForSelectedWatch(), [currentTab])
+    useEffect(() => getTicketsFromDb(), [currentTab])
 
 
     const getTicketsFromDbForSelectedWatch = () => {
-        setTime(new Date().toLocaleString())
-        console.log('getTicketsFromDbForSelectedWatch firing')
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
             fetch('http://localhost:3001/tickets/getTickets')
@@ -76,7 +74,6 @@ const ViewPage = () => {
             fetch('http://localhost:3001/watches/getWatches')
                 .then(data => data.json())
                 .then(res => setWatches(res.data))
-                .then(console.log(watches))
         }
     }
 
@@ -96,7 +93,6 @@ const ViewPage = () => {
         border: black 1px solid;
         border-radius: 7px;
         font-weight: 100px;
-
         &:hover{
             box-shadow: inset 2px 2px 1px rgba(4, 4, 4, .9);
 
@@ -104,43 +100,40 @@ const ViewPage = () => {
 
     `
 
-
     return (
         <div>
-            <VPButton onClick={getTicketsFromDb}>
-                Select All</VPButton>
-            <br />
-            <br />
-            <VPButton className={`accordion ${isActive}`} onClick={toggleAccordion}>
-                <p>Select Watch</p>
+            <VPButton style={{ marginLeft: '1em', float: 'right' }} onClick={getTicketsFromDb}>
+                Select All Watches</VPButton>
+            {/* <br />
+            <br /> */}
+            <VPButton className={`accordion ${isActive}`} style={{ height: '60px', width: '200px' }} onClick={toggleAccordion}>
+                <span>Select Watch</span>
                 <Chevron className={`${rotation}`} width={10} fill={"#777"} />
             </VPButton>
+            <VPButton style={{ float: 'right' }} onClick={getTicketsFromDbForSelectedWatch}>  {selectedWatch ? 'View Results For ' + selectedWatch : 'Click here once you have selected a watch'}</VPButton>
             <Container>
                 {(isActive === 'active') ?
                     watches.map((item, index) => {
                         return (
-                            <div>
 
-                                <div style={{ maxHeight: `${watchHeight}` }} key={index}>
-                                    <WatchCard name={item.name} image={item.image} selectedWatch={selectedWatch} setSelectedWatch={setSelectedWatch} id={item._id} />
-                                </div>
+                            <div style={{ maxHeight: `${watchHeight}` }} key={index}>
+                                <WatchCard name={item.name} image={item.image} selectedWatch={selectedWatch} setSelectedWatch={setSelectedWatch} id={item._id} />
+                            </div>
 
-                            </div>)
+                        )
                     })
                     :
                     <div>
                     </div>
                 }
             </Container>
-            <br />
-            <hr />
+
             <div className="TicketView">
-                <VPButton onClick={getTicketsFromDbForSelectedWatch}>  {selectedWatch ? 'View Results For ' + selectedWatch : 'Click here once you have selected a watch'}</VPButton>
-                <hr />
 
 
 
                 {/* ///// tabs begin ///// */}
+                <hr />
                 <Tabs selectedIndex={currentTab} onSelect={handleCurrentTab} style={{ display: `${areTabsVisible}` }}>
                     <TabList>
                         <Tab>All</Tab>
@@ -174,10 +167,11 @@ const ViewPage = () => {
                                             date_fulfilled={item.date_fulfilled}
 
                                         />
-                                    </div>)
+                                    </div>
+                                )
                             })
                             :
-                            <div></div>
+                            <div>No tickets fit the current criteria.</div>
                         }
                     </TabPanel>
                     <TabPanel>
@@ -207,7 +201,7 @@ const ViewPage = () => {
                                     </div>)
                             })
                             :
-                            <div>No Pending Tickets</div>
+                            <div>No tickets fit the current criteria.</div>
                         }
                     </TabPanel>
                     <TabPanel>
@@ -237,7 +231,7 @@ const ViewPage = () => {
                                     </div>)
                             })
                             :
-                            <div>No Fulfilled Tickets</div>
+                            <div>No tickets fit the current criteria.</div>
                         }
                     </TabPanel>
                 </Tabs>

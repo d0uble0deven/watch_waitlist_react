@@ -123,7 +123,7 @@ export default function NameForm(props) {
                 </select>
                 <br />
                 <br />
-                <input type="submit" value="Submit" />
+                <input style={{ marginBottom: '2em' }} type="submit" value="Submit" />
             </form>
 
         </div>

@@ -1,7 +1,9 @@
 import React from 'react'
-import { Card, CardBody, CardTitle, Button, Input } from 'reactstrap';
+import { CardBody } from 'reactstrap';
+import DeleteButton from './DeleteButton'
 import styled from 'styled-components'
 import axios from 'axios'
+
 
 // text shadow, hover
 
@@ -57,6 +59,17 @@ const TicketCard = (props) => {
 
     }
 
+    const deleteTicketFromDB = (event) => {
+        event.persist()
+        console.log('deleteTicketFromDB is firing')
+        // const ticketToDelete = { id: event.target.value }
+        // console.log(ticketToDelete)
+        axios.delete('http://localhost:3001/tickets/deleteTicket/:id', {
+            id: event.target.value
+        })
+
+
+    }
 
 
     return (
@@ -64,6 +77,7 @@ const TicketCard = (props) => {
             id="TicketCard" inverse key={props.id} >
 
             <CardBody >
+                {/* <DeleteButton onClick={deleteTicketFromDB} value={props.id}>X</DeleteButton> */}
                 <TInfo>Name: {props.first_name} {props.last_name}</TInfo>
                 <TInfo>Address: {props.street}
                     <br />
@@ -73,8 +87,8 @@ const TicketCard = (props) => {
                 <TInfo>Employee Responsible: {props.employee_responsible}</TInfo>
                 <TInfo>Watch Ordered: {props.watch_ordered}</TInfo>
                 <TInfo>Date of Order: {new Date(props.date_ordered).toDateString()}</TInfo>
-                <TInfo>Fulfilled: {props.fulfilled}</TInfo>
-                <TInfo>Date Fulfilled: {(props.fulfilled === false) ? '' : new Date(props.date_fulfilled).toDateString()}</TInfo>
+                <TInfo>Fulfillment Status: {(props.fulfilled === true) ? 'Fulfilled' : 'Pending'}</TInfo>
+                <TInfo>Date Fulfilled: {(props.fulfilled === false) ? 'Not Yet Fulfilled' : new Date(props.date_fulfilled).toDateString()}</TInfo>
 
                 <TButton outline color="primary" id={props.id} value={true} onClick={handleFulfillmentUpdate}>Fulfilled</TButton>
                 <TButton outline color="secondary" id={props.id} value={false} onClick={handleFulfillmentUpdate}>Pending</TButton>
