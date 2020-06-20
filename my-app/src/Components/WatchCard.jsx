@@ -30,7 +30,7 @@ const WatchCard = (props) => {
 
     const WImg = styled.img`
         height: 8em;
-        width: 8em;
+        width: 6em;
         border-radius: 2px;
         
     
