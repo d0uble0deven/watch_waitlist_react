@@ -37,8 +37,10 @@ const ViewPage = () => {
 
     }
 
-    useEffect(() => getTicketsFromDbForSelectedWatch(), [currentTab])
-    useEffect(() => getTicketsFromDb(), [currentTab])
+    useEffect(() =>
+        (selectedWatch !== '') ? getTicketsFromDbForSelectedWatch() : getTicketsFromDb()
+        , [currentTab])
+    // useEffect(() => getTicketsFromDb(), [currentTab])
 
 
     const getTicketsFromDbForSelectedWatch = () => {
