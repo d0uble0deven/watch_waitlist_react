@@ -47,12 +47,17 @@ async function updateFulfillment(req, res) {
     id = req.body.statusUpdate.id
     status = req.body.statusUpdate.status
     let date = Date.now()
-    console.log('id: ' + id)
-    console.log('status: ' + status)
-    console.log('typeof date: ' + typeof (date))
-    console.log('date: ' + date)
+    // console.log('id: ' + id)
+    // console.log('status: ' + status)
+    // console.log('typeof date: ' + typeof (date))
+    // console.log('date: ' + date)
     try {
-        await Ticket.update({ _id: id }, { $set: { fulfilled: status, date_fulfilled: date } })
+        if (status == true) {
+            await Ticket.update({ _id: id }, { $set: { fulfilled: status, date_fulfilled: date } })
+        }
+        else {
+            await Ticket.update({ _id: id }, { $set: { fulfilled: status, date_fulfilled: '' } })
+        }
     }
     catch (error) {
         console.error(error)

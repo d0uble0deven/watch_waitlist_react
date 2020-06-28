@@ -22,8 +22,8 @@ const TicketSchema = new Schema(
         employee_responsible: { type: String },
         date_ordered: { type: Date },
         watch_ordered: { type: String }, // enum?
-        date_fulfilled: { type: Date }, // how to have multiple types?
         fulfilled: { type: Boolean },
+        date_fulfilled: { type: Date, default: '' }, // how to have multiple types?
         // required: true
     },
     { timestamps: true }

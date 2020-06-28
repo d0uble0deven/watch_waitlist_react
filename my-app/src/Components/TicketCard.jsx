@@ -87,8 +87,10 @@ const TicketCard = (props) => {
                 <TInfo>Employee Responsible: {props.employee_responsible}</TInfo>
                 <TInfo>Watch Ordered: {props.watch_ordered}</TInfo>
                 <TInfo>Date of Order: {new Date(props.date_ordered).toDateString()}</TInfo>
-                <TInfo>Fulfillment Status: {(props.fulfilled === true) ? 'Fulfilled' : 'Pending'}</TInfo>
-                <TInfo>Date Fulfilled: {(props.fulfilled === false) ? 'Not Yet Fulfilled' : new Date(props.date_fulfilled).toDateString()}</TInfo>
+                {/* <TInfo>Fulfillment Status: {(props.fulfilled == true) ? 'Fulfilled' : 'Pending'}</TInfo> */}
+                <TInfo>Fulfillment Status: {props.fulfilled}</TInfo>
+                {/* <TInfo>Date Fulfilled: {(props.fulfilled == false) ? 'Not Yet Fulfilled' : new Date(props.date_fulfilled).toDateString()}</TInfo> */}
+                <TInfo>Date Fulfilled: {props.fulfilled}</TInfo>
 
                 <TButton outline color="primary" id={props.id} value={true} onClick={handleFulfillmentUpdate}>Fulfilled</TButton>
                 <TButton outline color="secondary" id={props.id} value={false} onClick={handleFulfillmentUpdate}>Pending</TButton>
