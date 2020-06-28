@@ -26,16 +26,16 @@ db.once('open', () => console.log('connected to the database'));
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// not building, how to fix??
-// correct procfile path
-// correct sendFile path
+// not building, how to fix?? -Done
+// correct procfile path -Done
+// correct sendFile path -Done
 
 
 // added with heroku deployment
 if (process.env.NODE_ENV === 'production') {
     // app.use(express.static(path.join(__dirname, 'build')));
-    app.use(express.static('../my-app/build')
-            
+    app.use(express.static('../my-app/build'))
+
     app.get('/*', function (req, res) {
         res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
     });
