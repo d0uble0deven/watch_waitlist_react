@@ -11,13 +11,13 @@ const path = require('path')
 var cookieParser = require('cookie-parser')
 var methodOverride = require('method-override')
 
-const API_PORT = process.env.PORT || 3001;
+const API_PORT = process.env.PORT || 3001; // good!
 const app = express();
 
 app.use(cors());
 
 // connects our back end code with the database
-mongoose.connect(dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
@@ -26,14 +26,21 @@ db.once('open', () => console.log('connected to the database'));
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+// not building, how to fix??
+// correct procfile path
+// correct sendFile path
 
 
 // added with heroku deployment
-app.use(express.static(path.join(__dirname, 'build')));
-app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+    // app.use(express.static(path.join(__dirname, 'build')));
+    app.use(express.static('../my-app/build')
+            
+    app.get('/*', function (req, res) {
+        res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
+    });
 
+}
 
 
 // bodyParser, parses the request body to be a readable json format
