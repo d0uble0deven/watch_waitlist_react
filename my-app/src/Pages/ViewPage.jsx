@@ -29,9 +29,9 @@ const ViewPage = () => {
 
     let baseUrl
     if (process.env.NODE_ENV === "development") {
-        baseUrl = "http://localhost:3001";
+        baseUrl = "http://localhost:3001/";
     } else if (process.env.NODE_ENV === "production") {
-        baseUrl = "https://damp-escarpment-81067.herokuapp.com";
+        baseUrl = "https://damp-escarpment-81067.herokuapp.com/";
     }
 
     const getTicketsFromDb = () => {
