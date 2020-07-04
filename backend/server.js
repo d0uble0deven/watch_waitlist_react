@@ -38,7 +38,8 @@ if (process.env.NODE_ENV === 'production') {
     // my-app/build
 
     // const index = path.join(__dirname, 'build', 'index.html')
-    const index = '../my-app/build/index.html'
+    const index = path.join(__dirname, '../my-app/build/index.html')
+    console.log(__dirname)
     app.get('/*', function (req, res) {
         // res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
         res.sendFile(index);
