@@ -30,7 +30,7 @@ const ViewPage = () => {
     const getTicketsFromDb = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
-            fetch('https://damp-escarpment-81067.herokuapp.com/tickets/getTickets')
+            fetch('/tickets/getTickets')
                 // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data))
@@ -47,7 +47,7 @@ const ViewPage = () => {
     const getTicketsFromDbForSelectedWatch = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
-            fetch('https://damp-escarpment-81067.herokuapp.com/tickets/getTickets')
+            fetch('/tickets/getTickets')
                 // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data.filter(ticket => ticket.watch_ordered == selectedWatch)))
@@ -75,7 +75,7 @@ const ViewPage = () => {
 
     const getWatchesFromDb = () => {
         if (rotation === 'accordion_icon') {
-            fetch('https://damp-escarpment-81067.herokuapp.com/watches/getWatches')
+            fetch('/watches/getWatches')
                 // fetch('http://localhost:3001/watches/getWatches')
                 .then(data => data.json())
                 .then(res => setWatches(res.data))
