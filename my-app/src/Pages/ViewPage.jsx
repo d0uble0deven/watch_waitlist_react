@@ -27,10 +27,17 @@ const ViewPage = () => {
 
     const [areTabsVisible, setAreTabsVisible] = useState('none')
 
+    let baseUrl
+    if (process.env.NODE_ENV === "development") {
+        baseUrl = "http://localhost:3001";
+    } else if (process.env.NODE_ENV === "production") {
+        baseUrl = "https://damp-escarpment-81067.herokuapp.com/";
+    }
+
     const getTicketsFromDb = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
-            fetch('/tickets/getTickets')
+            fetch(baseUrl + '/tickets/getTickets')
                 // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data))
@@ -47,7 +54,7 @@ const ViewPage = () => {
     const getTicketsFromDbForSelectedWatch = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
-            fetch('/tickets/getTickets')
+            fetch(baseUrl + '/tickets/getTickets')
                 // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data.filter(ticket => ticket.watch_ordered == selectedWatch)))
@@ -75,7 +82,7 @@ const ViewPage = () => {
 
     const getWatchesFromDb = () => {
         if (rotation === 'accordion_icon') {
-            fetch('/watches/getWatches')
+            fetch(baseUrl + '/watches/getWatches')
                 // fetch('http://localhost:3001/watches/getWatches')
                 .then(data => data.json())
                 .then(res => setWatches(res.data))
