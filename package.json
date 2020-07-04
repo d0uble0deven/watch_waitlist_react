@@ -36,5 +36,6 @@
     "semantic-ui-react": "^0.88.2",
     "styled-components": "^5.1.1",
     "typescript": "^3.9.2"
-  }
+  },
+  "heroku-run-build-script": true
 }
