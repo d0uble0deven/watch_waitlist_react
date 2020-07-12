@@ -17,8 +17,7 @@ const app = express();
 app.use(cors());
 
 // connects our back end code with the database
-// mongoose.connect(process.env.MONGODB_URI || dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
-mongoose.connect(dbRoute || dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
