@@ -16,6 +16,8 @@ const app = express();
 
 app.use(cors());
 
+// mlab uri: MONGODB_URI = mongodb://heroku_0nk87fw9:pq04f13j744p88vamktusip51k@ds125262.mlab.com:25262/heroku_0nk87fw9
+
 // connects our back end code with the database
 mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_URI, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
 
