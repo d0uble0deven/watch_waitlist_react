@@ -26,10 +26,6 @@ db.once('open', () => console.log('connected to the database'));
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-
-
-
-
 // bodyParser, parses the request body to be a readable json format
 app.use(bodyParser.urlencoded({ extended: false }));
 // allows for ui to talk to db, allows req.body
@@ -39,25 +35,26 @@ app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
+
+
 // added with heroku deployment
 if (process.env.NODE_ENV === 'production') {
-    // app.use(express.static(path.join(__dirname, 'build')));
     app.use(express.static('my-app/build'))
-    // my-app/build
 
     const index = path.join(__dirname, '../my-app/build/index.html')
     app.get('/*', function (req, res) {
-        // res.sendFile(path.join(__dirname, '../my-app/build/index.html'));
         res.sendFile(index);
     });
 
 }
+
+
 // append /api for our http requests
 app.use('/tickets', ticketRoutes);
 app.use('/watches', watchRoutes);
 
 // launch our backend into a port
-app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
-// app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+// app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 
 module.exports = app
