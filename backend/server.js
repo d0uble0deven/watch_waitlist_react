@@ -26,10 +26,18 @@ db.once('open', () => console.log('connected to the database'));
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-// not building, how to fix?? -Done
-// correct procfile path -Done
-// correct sendFile path -Done
 
+
+
+
+// bodyParser, parses the request body to be a readable json format
+app.use(bodyParser.urlencoded({ extended: false }));
+// allows for ui to talk to db, allows req.body
+app.use(bodyParser.json());
+app.use(logger('dev'));
+app.use(cookieParser());
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride('_method'));
 
 // added with heroku deployment
 if (process.env.NODE_ENV === 'production') {
@@ -44,17 +52,6 @@ if (process.env.NODE_ENV === 'production') {
     });
 
 }
-
-
-// bodyParser, parses the request body to be a readable json format
-app.use(bodyParser.urlencoded({ extended: false }));
-// allows for ui to talk to db, allows req.body
-app.use(bodyParser.json());
-app.use(logger('dev'));
-app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
-app.use(methodOverride('_method'));
-
 // append /api for our http requests
 app.use('/tickets', ticketRoutes);
 app.use('/watches', watchRoutes);
