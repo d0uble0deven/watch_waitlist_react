@@ -17,7 +17,7 @@ const app = express();
 app.use(cors());
 
 // connects our back end code with the database
-mongoose.connect(process.env.MONGODB_URI || dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || process.env.MONGODB_URI, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
@@ -32,7 +32,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(logger('dev'));
 app.use(cookieParser());
-// app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
 
 
@@ -54,7 +53,7 @@ app.use('/tickets', ticketRoutes);
 app.use('/watches', watchRoutes);
 
 // launch our backend into a port
-// app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
-app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
+// app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 
 module.exports = app
