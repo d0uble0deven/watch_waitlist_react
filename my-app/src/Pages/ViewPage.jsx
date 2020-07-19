@@ -17,6 +17,10 @@ const ViewPage = () => {
     const [currentTab, setCurrentTab] = useState(1)
     const handleCurrentTab = (index) => setCurrentTab(index)
 
+    const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    }
 
 
     // gets tickets from db when 'View Search Results' is clicked
@@ -37,7 +41,7 @@ const ViewPage = () => {
     const getTicketsFromDb = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
-            fetch(baseUrl + 'tickets/getTickets')
+            fetch(baseUrl + 'tickets/getTickets', headers)
                 // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data))
@@ -54,7 +58,7 @@ const ViewPage = () => {
     const getTicketsFromDbForSelectedWatch = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
-            fetch(baseUrl + 'tickets/getTickets')
+            fetch(baseUrl + 'tickets/getTickets', headers)
                 // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data.filter(ticket => ticket.watch_ordered == selectedWatch)))
@@ -83,7 +87,7 @@ const ViewPage = () => {
     const getWatchesFromDb = () => {
         console.log('baseUrl: ' + baseUrl)
         if (rotation === 'accordion_icon') {
-            fetch(baseUrl + 'watches/getWatches')
+            fetch(baseUrl + 'watches/getWatches', headers)
                 // fetch('http://localhost:3001/watches/getWatches')
                 .then(data => data.json())
                 .then(res => setWatches(res.data))
