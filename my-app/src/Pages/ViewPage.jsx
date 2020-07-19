@@ -81,6 +81,7 @@ const ViewPage = () => {
     const [watches, setWatches] = useState([]) // displays watches
 
     const getWatchesFromDb = () => {
+        console.log('baseUrl: ' + baseUrl)
         if (rotation === 'accordion_icon') {
             fetch(baseUrl + 'watches/getWatches')
                 // fetch('http://localhost:3001/watches/getWatches')
