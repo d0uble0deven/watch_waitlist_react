@@ -16,14 +16,12 @@ const app = express();
 
 app.use(cors());
 
-// mlab uri: MONGODB_URI = mongodb://heroku_0nk87fw9:pq04f13j744p88vamktusip51k@ds125262.mlab.com:25262/heroku_0nk87fw9
-
 // connects our back end code with the database
 mongoose.connect(dbRoute || dbRoute, { useNewUrlParser: true, findandmodify: false, useUnifiedTopology: true });
 
 let db = mongoose.connection;
 
-db.once('open', () => console.log('connected to the database'));
+db.once('open', () => console.log('root level: connected to the database'));
 
 // checks if connection with the database is successful
 db.on('error', console.error.bind(console, 'root level: MongoDB connection error:'));
@@ -40,9 +38,9 @@ app.use(methodOverride('_method'));
 
 // added with heroku deployment
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static('my-app/build'))
+    app.use(express.static('/build'))
 
-    const index = path.join(__dirname, '../my-app/build/index.html')
+    const index = path.join(__dirname, './my-app/build/index.html')
     app.get('/*', function (req, res) {
         res.sendFile(index);
     });

@@ -42,7 +42,6 @@ const ViewPage = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
             fetch(baseUrl + 'tickets/getTickets', headers)
-                // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data))
         }
@@ -59,7 +58,6 @@ const ViewPage = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
             fetch(baseUrl + 'tickets/getTickets', headers)
-                // fetch('http://localhost:3001/tickets/getTickets')
                 .then(data => data.json())
                 .then(res => setCustomer(res.data.filter(ticket => ticket.watch_ordered == selectedWatch)))
         }
@@ -88,7 +86,6 @@ const ViewPage = () => {
         console.log('baseUrl: ' + baseUrl)
         if (rotation === 'accordion_icon') {
             fetch(baseUrl + 'watches/getWatches', headers)
-                // fetch('http://localhost:3001/watches/getWatches')
                 .then(data => data.json())
                 .then(res => setWatches(res.data))
         }
