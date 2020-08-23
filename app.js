@@ -4,7 +4,7 @@ var cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 require('dotenv').config()
-const dbRoute = process.env.DB_ROUTE
+const dbRoute = process.env.MONGODB_URI
 const ticketRoutes = require('./routes/ticketRoute')
 const watchRoutes = require('./routes/watchRoute')
 const path = require('path')
