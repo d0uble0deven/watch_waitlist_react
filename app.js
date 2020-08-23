@@ -38,7 +38,7 @@ app.use(methodOverride('_method'));
 
 // added with heroku deployment
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'build')))
+    app.use(express.static(path.join(__dirname, 'my-app', 'build')))
 
     const index = path.join(__dirname, 'my-app', 'build', 'index.html')
     app.get('/*', function (req, res) {
