@@ -11,7 +11,7 @@ const path = require('path')
 var cookieParser = require('cookie-parser')
 var methodOverride = require('method-override')
 
-const API_PORT = process.env.PORT || 3001; // good!
+const API_PORT = process.env.PORT || 3001;
 const app = express();
 
 app.use(cors());
@@ -38,10 +38,10 @@ app.use(methodOverride('_method'));
 
 // added with heroku deployment
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'my-app', 'build')))
+    app.use(express.static(path.join(__dirname, 'client', 'build')))
 
-    const index = path.join(__dirname, 'my-app', 'build', 'index.html')
-    app.get('/*', function (req, res) {
+    const index = path.join(__dirname, 'client', 'build', 'index.html')
+    app.get('*', function (req, res) {
         res.sendFile(index);
     });
 }
@@ -53,6 +53,5 @@ app.use('/watches', watchRoutes);
 
 // launch our backend into a port
 app.listen(API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
-// app.listen(process.env.PORT || API_PORT, () => console.log(`LISTENING ON PORT ${API_PORT}`));
 
 module.exports = app
