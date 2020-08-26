@@ -18,8 +18,8 @@ const ViewPage = () => {
     const handleCurrentTab = (index) => setCurrentTab(index)
 
     const headers = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        // 'Content-Type': 'application/json',
+        // 'Accept': 'application/json'
     }
 
 
