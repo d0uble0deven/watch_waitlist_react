@@ -18,8 +18,8 @@ const ViewPage = () => {
     const handleCurrentTab = (index) => setCurrentTab(index)
 
     const headers = {
-        // 'Content-Type': 'application/json',
-        // 'Accept': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
     }
 
 
@@ -43,7 +43,8 @@ const ViewPage = () => {
             setAreTabsVisible('inline')
             fetch(baseUrl + 'tickets/getTickets', headers)
                 .then(data => data.json())
-                .then(res => setCustomer(res.data))
+                // .then(res => setCustomer(res.data))
+                .then(res => console.log(res.data))
         }
 
     }
