@@ -49,7 +49,8 @@ const ViewPage = () => {
         if (isTCActive === 'active') {
             setAreTabsVisible('inline')
             fetch(baseUrl + 'tickets/getTickets', headers)
-                .then(data => data.json())
+                .then(data => data.text())
+                .then(text => console.log(text))
                 .then(res => setCustomer(res.data))
         }
 
