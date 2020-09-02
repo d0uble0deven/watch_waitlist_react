@@ -9,6 +9,8 @@ import Chevron from '../Components/Chevron';
 import styled from 'styled-components'
 
 
+// proxy: localhost 3001
+
 // TODO: convert tabs in to radio buttons to filter contents, tabs currently get tickets for all watches
 // TODO: get req.body to pick up idToDelete
 
