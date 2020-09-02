@@ -26,7 +26,7 @@
     "eject": "react-scripts eject",
     "heroku-postbuild": "npm run build"
   },
-  "proxy": "https://peaceful-reef-53400.herokuapp.com/",
+  "proxy": "http://localhost:3001/",
   "eslintConfig": {
     "extends": "react-app"
   },
